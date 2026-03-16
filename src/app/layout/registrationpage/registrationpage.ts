@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // NgIf, NgClass vb. için
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../core/services/authService';
-import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registrationpage',
@@ -18,7 +19,9 @@ export class RegistrationPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +42,8 @@ export class RegistrationPage implements OnInit {
         },
         error: (err) => {
           console.error('Kayıt hatası', err);
+          const errorMsg = err.error?.message || this.translate.instant('TOAST.ERROR_GENERIC');
+          this.toastr.error(errorMsg, this.translate.instant('TOAST.ERROR'));
         }
       });
     }

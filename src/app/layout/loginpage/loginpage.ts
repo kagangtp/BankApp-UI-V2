@@ -2,8 +2,9 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/authService';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-loginpage',
@@ -15,6 +16,8 @@ import { RouterLink } from '@angular/router';
 export class Loginpage {
   private router = inject(Router);
   private authService = inject(AuthService);
+  private toastr = inject(ToastrService);
+  private translate = inject(TranslateService);
 
   loginData = { email: '', password: '' };
 
@@ -60,7 +63,10 @@ export class Loginpage {
           this.router.navigate(['/mainpage/dashboard']);
         }
       },
-      error: (err) => alert(err.error?.message || "Hata!")
+      error: (err) => {
+        const errorMsg = err.error?.message || this.translate.instant('TOAST.ERROR_GENERIC');
+        this.toastr.error(errorMsg, this.translate.instant('TOAST.ERROR'));
+      }
     });
   }
 }

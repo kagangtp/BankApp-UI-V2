@@ -27,3 +27,5 @@ Thumbs.db
 # Environments
 # Eğer production için gizli anahtarlar kullanacaksan burayı kapatabilirsin
 # src/environments/environment.prod.ts
+
+*.code-workspace

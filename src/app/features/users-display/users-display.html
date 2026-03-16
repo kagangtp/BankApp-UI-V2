@@ -1,1 +1,49 @@
-<p>users-display works!</p>
+<div class="users-display-wrapper">
+    <div class="header-section">
+        <div class="title-area">
+            <h1>{{ 'USERS_DISPLAY_PAGE.TITLE' | translate }}</h1>
+            <p>{{ 'USERS_DISPLAY_PAGE.SUBTITLE' | translate }}</p>
+        </div>
+    </div>
+
+    <div class="user-list-container">
+        <div class="list-header">
+            <span class="col-username">{{ 'USERS_DISPLAY_PAGE.COL_USERNAME' | translate }}</span>
+            <span class="col-email">{{ 'USERS_DISPLAY_PAGE.COL_EMAIL' | translate }}</span>
+            <span class="col-role">{{ 'USERS_DISPLAY_PAGE.COL_ROLE' | translate }}</span>
+            <span class="col-date">{{ 'USERS_DISPLAY_PAGE.COL_DATE' | translate }}</span>
+        </div>
+
+        @if (isLoading) {
+        <div class="loading-state">
+            <div class="spinner"></div>
+            <p>{{ 'USERS_DISPLAY_PAGE.LOADING' | translate }}</p>
+        </div>
+        } @else {
+            @for (user of users; track user.id) {
+            <div class="list-card">
+                <div class="col-username">
+                    <div class="user-avatar-sm">{{ user.username.charAt(0).toUpperCase() }}</div>
+                    <span class="username-text">{{ user.username }}</span>
+                </div>
+                <div class="col-email">
+                    <span class="email-text">{{ user.email }}</span>
+                </div>
+                <div class="col-role">
+                    <span class="role-badge" [ngClass]="getRoleBadgeClass(user.role)">
+                        {{ user.role || ('USERS_DISPLAY_PAGE.NO_ROLE' | translate) }}
+                    </span>
+                </div>
+                <div class="col-date">
+                    <span class="date-text">{{ user.createdAt | date:'dd MMM yyyy' }}</span>
+                </div>
+            </div>
+            } @empty {
+            <div class="empty-state">
+                <div class="empty-icon">👤</div>
+                <p>{{ 'USERS_DISPLAY_PAGE.EMPTY' | translate }}</p>
+            </div>
+            }
+        }
+    </div>
+</div>

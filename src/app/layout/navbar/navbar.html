@@ -11,7 +11,10 @@
 
     <div class="user-info">
       <span class="user-name">{{ userName }}</span>
-      <div class="user-avatar">{{ userInitial }}</div>
+      <div class="user-avatar">
+        <img *ngIf="profilePhotoUrl; else initialBlock" [src]="profilePhotoUrl" alt="{{ userName }}" class="profile-img">
+        <ng-template #initialBlock>{{ userInitial }}</ng-template>
+      </div>
     </div>
   </div>
 </nav>

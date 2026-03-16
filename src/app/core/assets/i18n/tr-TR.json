@@ -191,5 +191,30 @@
     "LANGUAGE_TITLE": "Dil ve Bölge",
     "LANGUAGE_DESC": "Kullanmak istediğiniz dili seçin.",
     "LANGUAGE_LABEL": "Uygulama Dili"
+  },
+  "DASHBOARD_PAGE": {
+    "TITLE": "Panel",
+    "SUBTITLE": "Anlık sistem özeti",
+    "TOTAL_CUSTOMERS": "TOPLAM MÜŞTERİ",
+    "GLOBAL_BALANCE": "TOPLAM BAKİYE",
+    "AVERAGE_BALANCE": "ORTALAMA BAKİYE",
+    "CHART_TITLE": "Bakiye Dağılımı",
+    "CHART_SUBTITLE": "Ortalama bakiye ile kalan toplamın karşılaştırması",
+    "CHART_LABEL_AVG": "Ortalama Bakiye",
+    "CHART_LABEL_REMAINING": "Kalan Toplam",
+    "LOADING": "Panel yükleniyor...",
+    "LINE_CHART_TITLE": "Müşteri Kayıtları",
+    "LINE_CHART_SUBTITLE": "Aylık yeni müşteri eğilimleri"
+  },
+  "USERS_DISPLAY_PAGE": {
+    "TITLE": "Kullanıcı Hesapları",
+    "SUBTITLE": "Tüm kayıtlı kullanıcı hesaplarını yönetin.",
+    "COL_USERNAME": "KULLANICI ADI",
+    "COL_EMAIL": "E-POSTA",
+    "COL_ROLE": "ROL",
+    "COL_DATE": "KAYIT TARİHİ",
+    "LOADING": "Kullanıcılar yükleniyor...",
+    "EMPTY": "Kullanıcı bulunamadı.",
+    "NO_ROLE": "Rol Yok"
   }
 }

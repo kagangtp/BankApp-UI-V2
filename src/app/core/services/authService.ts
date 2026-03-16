@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 import { SingleResponseModel } from '../models/responses/single-response-model';
 import { ResponseModel } from '../models/responses/response-model';
 import { environment } from '../../../environments/environment';
@@ -83,9 +84,26 @@ export class AuthService {
 
   saveToken(token: string, rememberMe: boolean = false) {
     if (rememberMe) {
-      localStorage.setItem('token', token);
+        localStorage.setItem('token', token);
     } else {
-      sessionStorage.setItem('token', token);
+        sessionStorage.setItem('token', token);
+    }
+
+    try {
+        const decodedToken: any = jwtDecode(token);
+        const user = {
+            id: decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'] || decodedToken.nameid || decodedToken.sub,
+            email: decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'] || decodedToken.email,
+            role: decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] || decodedToken.role
+        };
+
+        if (rememberMe) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+        } else {
+            sessionStorage.setItem('currentUser', JSON.stringify(user));
+        }
+    } catch (e) {
+        console.error("Token decode error:", e);
     }
   }
 

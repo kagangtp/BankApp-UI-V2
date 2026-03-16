@@ -193,5 +193,30 @@
     "LANGUAGE_LABEL": "Application Language",
     "COLOR_TITLE": "UI Color",
     "COLOR_DESC": "Change the application color."
+  },
+  "DASHBOARD_PAGE": {
+    "TITLE": "Dashboard",
+    "SUBTITLE": "Real-time system overview",
+    "TOTAL_CUSTOMERS": "TOTAL CUSTOMERS",
+    "GLOBAL_BALANCE": "GLOBAL BALANCE",
+    "AVERAGE_BALANCE": "AVERAGE BALANCE",
+    "CHART_TITLE": "Balance Distribution",
+    "CHART_SUBTITLE": "Average balance vs remaining total",
+    "CHART_LABEL_AVG": "Average Balance",
+    "CHART_LABEL_REMAINING": "Remaining Total",
+    "LOADING": "Loading dashboard...",
+    "LINE_CHART_TITLE": "Customer Registrations",
+    "LINE_CHART_SUBTITLE": "Monthly new customer trends"
+  },
+  "USERS_DISPLAY_PAGE": {
+    "TITLE": "User Accounts",
+    "SUBTITLE": "Manage all registered user accounts.",
+    "COL_USERNAME": "USERNAME",
+    "COL_EMAIL": "EMAIL",
+    "COL_ROLE": "ROLE",
+    "COL_DATE": "REGISTRATION DATE",
+    "LOADING": "Loading users...",
+    "EMPTY": "No users found.",
+    "NO_ROLE": "No Role"
   }
 }
