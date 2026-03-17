@@ -5,7 +5,7 @@ import { Car } from '../models/car';
 import { SingleResponseModel } from '../models/responses/single-response-model';
 import { ListResponseModel } from '../models/responses/list-response-model';
 import { ResponseModel } from '../models/responses/response-model';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root',

@@ -8,7 +8,7 @@ import { ListResponseModel } from '../models/responses/list-response-model';
 import { SingleResponseModel } from '../models/responses/single-response-model';
 import { ResponseModel } from '../models/responses/response-model';
 import { CustomerParams } from '../models/params/customer-params';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

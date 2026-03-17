@@ -15,7 +15,7 @@ import { House } from '../../core/models/house';
 import { Customer } from '../../core/models/customer';
 
 // Environment
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-customer-assets',
