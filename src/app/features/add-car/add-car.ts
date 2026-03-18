@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { forkJoin } from 'rxjs';
     templateUrl: './add-car.html',
     styleUrl: './add-car.css',
 })
-export class AddCar {
+export class AddCar implements OnInit {
     private route = inject(ActivatedRoute);
     private router = inject(Router);
     private carService = inject(CarService);
@@ -45,7 +45,7 @@ export class AddCar {
     }
 
     onSubmit() {
-        if (!this.plate.trim()) return;
+        if (!this.plate.trim() || this.isSubmitting) return;
         this.isSubmitting = true;
 
         // 1. Araba oluştur
@@ -56,9 +56,9 @@ export class AddCar {
         }).subscribe({
             next: (res) => {
                 if (res.success) {
-                    const carId = res.data;
+                    const carId = res.data; // .NET'ten dönen carId
 
-                    // 2. Dosya yoksa direkt geri dön
+                    // 2. Dosya yoksa direkt bitir
                     if (this.selectedFiles.length === 0) {
                         this.toastr.success(this.translate.instant('ADD_CAR_PAGE.SUCCESS'));
                         this.goBack();
@@ -67,26 +67,36 @@ export class AddCar {
 
                     // 3. Dosyaları yükle
                     const uploads = this.selectedFiles.map(f => this.fileService.upload(f));
+
                     forkJoin(uploads).subscribe({
-                        next: (uploadResults) => {
-                            // 4. Her dosyayı arabaya bağla
-                            const assigns = uploadResults.map((file: any) =>
-                                this.fileService.assignOwner(file.id, carId, 'Car')
-                            );
+                        next: (uploadResults: any[]) => {
+                            // 4. Her yüklenen dosya için atama yap
+                            const assigns = uploadResults.map((uploadRes: any) => {
+                                // .NET ResponseWrapper (success/data) yapısına göre ID'yi çek
+                                const fileId = uploadRes.data?.id || uploadRes.id;
+
+                                if (!fileId) {
+                                    console.error('File ID could not be retrieved from upload response', uploadRes);
+                                }
+                                return this.fileService.assignOwner(fileId, carId, 'Car');
+                            });
+
                             forkJoin(assigns).subscribe({
                                 next: () => {
                                     this.toastr.success(this.translate.instant('ADD_CAR_PAGE.SUCCESS_WITH_FILES'));
                                     this.goBack();
                                 },
-                                error: () => {
+                                error: (err) => {
+                                    console.error('Assigning error:', err);
                                     this.toastr.warning(this.translate.instant('ADD_CAR_PAGE.FILE_ASSIGN_ERROR'));
                                     this.goBack();
                                 }
                             });
                         },
-                        error: () => {
+                        error: (err) => {
+                            console.error('Upload error:', err);
                             this.toastr.warning(this.translate.instant('ADD_CAR_PAGE.FILE_UPLOAD_ERROR'));
-                            this.goBack();
+                            this.isSubmitting = false; // Hata durumunda butonu tekrar aç
                         }
                     });
                 } else {

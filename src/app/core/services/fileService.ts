@@ -20,6 +20,10 @@ export class FileService {
         return this.http.put<any>(`${this.apiUrl}/${fileId}/assign`, { ownerId, ownerType });
     }
 
+    getByOwner(ownerType: string, ownerId: number): Observable<any> {
+        return this.http.get<any>(this.apiUrl, { params: { ownerType, ownerId } });
+    }
+
     downloadAsBlob(fileId: string): Observable<Blob> {
         return this.http.get(`${this.apiUrl}/${fileId}/download`, { responseType: 'blob' });
     }

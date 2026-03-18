@@ -38,7 +38,7 @@
                 <div class="images-row" *ngIf="house.images && house.images.length > 0">
                     @for (img of house.images; track img.id) {
                     <div class="image-thumb" (click)="openLightbox(img.relativePath, img.fileName)">
-                        <img [src]="rootUrl + '/uploads/' + img.relativePath" [alt]="img.fileName" loading="lazy" />
+                        <img [src]="img.relativePath" [alt]="img.fileName" loading="lazy" />
                     </div>
                     }
                 </div>
@@ -73,7 +73,7 @@
                 <div class="images-row" *ngIf="car.images && car.images.length > 0">
                     @for (img of car.images; track img.id) {
                     <div class="image-thumb" (click)="openLightbox(img.relativePath, img.fileName)">
-                        <img [src]="rootUrl + '/uploads/' + img.relativePath" [alt]="img.fileName" loading="lazy" />
+                        <img [src]="img.relativePath" [alt]="img.fileName" loading="lazy" />
                     </div>
                     }
                 </div>

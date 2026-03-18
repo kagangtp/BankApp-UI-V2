@@ -66,9 +66,13 @@ export class AddHouse {
                     const uploads = this.selectedFiles.map(f => this.fileService.upload(f));
                     forkJoin(uploads).subscribe({
                         next: (uploadResults) => {
-                            const assigns = uploadResults.map((file: any) =>
-                                this.fileService.assignOwner(file.id, houseId, 'House')
-                            );
+                            const assigns = uploadResults.map((file: any) => {
+                                const fileId = file.data?.id || file.id;
+                                if (!fileId) {
+                                    console.error('File ID could not be retrieved from upload response', file);
+                                }
+                                return this.fileService.assignOwner(fileId, houseId, 'House');
+                            });
                             forkJoin(assigns).subscribe({
                                 next: () => {
                                     this.toastr.success(this.translate.instant('ADD_HOUSE_PAGE.SUCCESS_WITH_FILES'));

@@ -2,12 +2,13 @@ import { Component, inject, OnInit, ViewChild, ElementRef } from '@angular/core'
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 // Services
 import { CarService } from '../../core/services/carService';
 import { HouseService } from '../../core/services/houseService';
 import { CustomerService } from '../../core/services/customerService';
-import { FileService } from '../../core/services/fileService'; // Added FilesService
+import { FileService } from '../../core/services/fileService';
 
 // Models
 import { Car } from '../../core/models/car';
@@ -30,12 +31,13 @@ export class CustomerAssets implements OnInit {
     private carService = inject(CarService);
     private houseService = inject(HouseService);
     private customerService = inject(CustomerService);
-    private filesService = inject(FileService); // Injected
+    private filesService = inject(FileService);
+    private toastr = inject(ToastrService);
 
     @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
-    readonly rootUrl = environment.rootUrl;
-    private readonly defaultAvatar = 'core/assets/images/default-avatar.png';
+    // Default avatar yolu (assets klasöründeki gerçek yoluna göre düzenle)
+    private readonly defaultAvatar = '/core/assets/images/default-avatar.png';
 
     customerId = 0;
     customer: Customer | null = null;
@@ -56,14 +58,14 @@ export class CustomerAssets implements OnInit {
     }
 
     /**
-     * Triggers the hidden file input
+     * Gizli dosya girişini tetikler
      */
     triggerFileUpload() {
         this.fileInput.nativeElement.click();
     }
 
     /**
-     * Handles the file selection and upload sequence
+     * Dosya seçimi ve yükleme akışını yönetir
      */
     onFileSelected(event: Event) {
         const input = event.target as HTMLInputElement;
@@ -71,32 +73,34 @@ export class CustomerAssets implements OnInit {
 
         const file = input.files[0];
 
-        // 1. Upload the file to get the Guid from .NET
+        // 1. Dosyayı yükle
         this.filesService.upload(file).subscribe({
-            next: (uploadRes) => {
-                if (uploadRes.success) {
-                    const newFileId = uploadRes.data.id; // This is the Guid? ProfileImageId
+            next: (uploadRes: any) => {
+                // .NET ResponseWrapper yapısına göre ID'yi çekiyoruz
+                const newFileId = uploadRes.data?.id || uploadRes.id;
 
-                    // 2. Assign the file to the current Customer
-                    const assignDto = {
-                        ownerType: 'Customer',
-                        ownerId: this.customerId
-                    };
-
-                    this.filesService.assignOwner(newFileId, this.customerId, 'Customer').subscribe({
-                        next: (assignRes) => {
-                            if (assignRes.success) {
-                                // 3. Reload customer to get the new profileImagePath
-                                this.loadCustomer();
-                            }
-                        },
-                        error: (err) => console.error('Assignment failed', err)
-                    });
+                if (!newFileId) {
+                    this.toastr.error("Dosya ID'si alınamadı.");
+                    return;
                 }
+
+                // 2. Dosyayı Müşteriye bağla (ProfileImageId olarak)
+                this.filesService.assignOwner(newFileId, this.customerId, 'Customer').subscribe({
+                    next: (assignRes: any) => {
+                        if (assignRes.success) {
+                            this.toastr.success("Profil resmi güncellendi!");
+                            this.loadCustomer(); // Yeni URL'i almak için reload
+                        }
+                    },
+                    error: (err) => {
+                        console.error('Assignment failed', err);
+                        this.toastr.error("Resim atama işlemi başarısız.");
+                    }
+                });
             },
             error: (err) => {
                 console.error('Upload failed', err);
-                this.handleImageError();
+                this.toastr.error("Dosya yüklenemedi.");
             }
         });
     }
@@ -105,8 +109,9 @@ export class CustomerAssets implements OnInit {
         this.customerService.getCustomerById(this.customerId).subscribe(res => {
             if (res.success) {
                 this.customer = res.data;
+                // .NET artık tam Supabase URL'i döndüğü için direkt atama yapıyoruz
                 this.profileImageUrl = this.customer?.profileImagePath
-                    ? `${this.rootUrl}/uploads/${this.customer.profileImagePath}`
+                    ? this.customer.profileImagePath
                     : this.defaultAvatar;
             }
         });
@@ -114,41 +119,32 @@ export class CustomerAssets implements OnInit {
 
     loadCars() {
         this.carService.getCarsByCustomer(this.customerId).subscribe(res => {
-            if (res.success) this.cars = res.data;
+            if (res.success) {
+                this.cars = res.data;
+            }
         });
     }
 
     loadHouses() {
         this.houseService.getHousesByCustomer(this.customerId).subscribe(res => {
-            if (res.success) this.houses = res.data;
+            if (res.success) {
+                this.houses = res.data;
+            }
         });
     }
 
-    goAddCar() {
-        this.router.navigate(['/mainpage/customer', this.customerId, 'add-car']);
-    }
+    // --- Navigasyon Metodları ---
+    goAddCar() { this.router.navigate(['/mainpage/customer', this.customerId, 'add-car']); }
+    goAddHouse() { this.router.navigate(['/mainpage/customer', this.customerId, 'add-house']); }
+    goEditCar(carId: number) { this.router.navigate(['/mainpage/customer', this.customerId, 'edit-car', carId]); }
+    goEditHouse(houseId: number) { this.router.navigate(['/mainpage/customer', this.customerId, 'edit-house', houseId]); }
+    goBack() { this.router.navigate(['/mainpage/customers']); }
 
-    goAddHouse() {
-        this.router.navigate(['/mainpage/customer', this.customerId, 'add-house']);
-    }
-
-    goEditCar(carId: number) {
-        this.router.navigate(['/mainpage/customer', this.customerId, 'edit-car', carId]);
-    }
-
-    goEditHouse(houseId: number) {
-        this.router.navigate(['/mainpage/customer', this.customerId, 'edit-house', houseId]);
-    }
-
-    goBack() {
-        this.router.navigate(['/mainpage/customers']);
-    }
-
-    openLightbox(relativePath: string, alt: string) {
-        this.lightboxImage = environment.rootUrl + '/uploads/' + relativePath;
+    // --- Lightbox Metodları ---
+    openLightbox(fullUrl: string, alt: string) {
+        this.lightboxImage = fullUrl;
         this.lightboxAlt = alt;
     }
-
     closeLightbox() {
         this.lightboxImage = null;
     }
