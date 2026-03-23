@@ -117,7 +117,9 @@
     "IMAGES": "Bilder",
     "SELECT_FILE": "Datei auswählen",
     "FILES_SELECTED": "Dateien ausgewählt",
-    "ERROR_GENERIC": "Ein Fehler ist aufgetreten."
+    "ERROR_GENERIC": "Ein Fehler ist aufgetreten.",
+    "DOWNLOAD": "Herunterladen",
+    "CLOSE": "Schließen"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "Häuser",

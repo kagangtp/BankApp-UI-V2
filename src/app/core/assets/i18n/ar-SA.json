@@ -117,7 +117,9 @@
     "IMAGES": "الصور",
     "SELECT_FILE": "اختيار ملف",
     "FILES_SELECTED": "ملفات مختارة",
-    "ERROR_GENERIC": "حدث خطأ."
+    "ERROR_GENERIC": "حدث خطأ.",
+    "DOWNLOAD": "تنزيل",
+    "CLOSE": "إغلاق"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "المنازل",

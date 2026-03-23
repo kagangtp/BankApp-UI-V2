@@ -119,6 +119,8 @@
     "IMAGES": "Resimler",
     "SELECT_FILE": "Dosya Seç",
     "FILES_SELECTED": "dosya seçildi",
+    "DOWNLOAD": "İndir",
+    "CLOSE": "Kapat",
     "ERROR_GENERIC": "Bir hata oluştu."
   },
   "CUSTOMER_ASSETS_PAGE": {

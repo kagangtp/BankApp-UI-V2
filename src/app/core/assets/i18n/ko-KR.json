@@ -117,7 +117,9 @@
     "IMAGES": "이미지",
     "SELECT_FILE": "파일 선택",
     "FILES_SELECTED": "개 파일 선택됨",
-    "ERROR_GENERIC": "오류가 발생했습니다."
+    "ERROR_GENERIC": "오류가 발생했습니다.",
+    "DOWNLOAD": "다운로드",
+    "CLOSE": "닫기"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "주택",

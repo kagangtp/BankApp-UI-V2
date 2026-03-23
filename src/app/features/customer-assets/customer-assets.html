@@ -93,7 +93,8 @@
 <!-- Lightbox Overlay -->
 <div class="lightbox-overlay" *ngIf="lightboxImage" (click)="closeLightbox()">
     <div class="lightbox-content" (click)="$event.stopPropagation()">
-        <button class="lightbox-close" (click)="closeLightbox()">✕</button>
+        <button class="lightbox-download" (click)="downloadImage()" [title]="'COMMON.DOWNLOAD' | translate">⬇️</button>
+        <button class="lightbox-close" (click)="closeLightbox()" [title]="'COMMON.CLOSE' | translate">✕</button>
         <img [src]="lightboxImage" [alt]="lightboxAlt" />
         <p class="lightbox-caption">{{ lightboxAlt }}</p>
     </div>

@@ -117,7 +117,9 @@
     "IMAGES": "画像",
     "SELECT_FILE": "ファイルを選択",
     "FILES_SELECTED": "ファイルが選択されました",
-    "ERROR_GENERIC": "エラーが発生しました。"
+    "ERROR_GENERIC": "エラーが発生しました。",
+    "DOWNLOAD": "ダウンロード",
+    "CLOSE": "閉じる"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "住宅",

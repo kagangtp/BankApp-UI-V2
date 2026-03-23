@@ -119,6 +119,8 @@
     "IMAGES": "Images",
     "SELECT_FILE": "Select File",
     "FILES_SELECTED": "files selected",
+    "DOWNLOAD": "Download",
+    "CLOSE": "Close",
     "ERROR_GENERIC": "An error occurred."
   },
   "CUSTOMER_ASSETS_PAGE": {

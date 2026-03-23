@@ -117,7 +117,9 @@
     "IMAGES": "Imágenes",
     "SELECT_FILE": "Seleccionar archivo",
     "FILES_SELECTED": "archivos seleccionados",
-    "ERROR_GENERIC": "Ocurrió un error."
+    "ERROR_GENERIC": "Ocurrió un error.",
+    "DOWNLOAD": "Descargar",
+    "CLOSE": "Cerrar"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "Casas",

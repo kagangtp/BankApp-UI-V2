@@ -117,7 +117,9 @@
     "IMAGES": "Images",
     "SELECT_FILE": "Sélectionner un fichier",
     "FILES_SELECTED": "fichiers sélectionnés",
-    "ERROR_GENERIC": "Une erreur s'est produite."
+    "ERROR_GENERIC": "Une erreur s'est produite.",
+    "DOWNLOAD": "Télécharger",
+    "CLOSE": "Fermer"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "Maisons",

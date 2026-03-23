@@ -117,7 +117,9 @@
     "IMAGES": "Imagini",
     "SELECT_FILE": "Selectează fișier",
     "FILES_SELECTED": "fișiere selectate",
-    "ERROR_GENERIC": "A apărut o eroare."
+    "ERROR_GENERIC": "A apărut o eroare.",
+    "DOWNLOAD": "Descarcă",
+    "CLOSE": "Închide"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "Case",

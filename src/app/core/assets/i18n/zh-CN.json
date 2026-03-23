@@ -117,7 +117,9 @@
     "IMAGES": "图片",
     "SELECT_FILE": "选择文件",
     "FILES_SELECTED": "个文件已选择",
-    "ERROR_GENERIC": "发生错误。"
+    "ERROR_GENERIC": "发生错误。",
+    "DOWNLOAD": "下载",
+    "CLOSE": "关闭"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "房屋",

@@ -149,6 +149,27 @@ export class CustomerAssets implements OnInit {
         this.lightboxImage = null;
     }
 
+    downloadImage() {
+        if (!this.lightboxImage) return;
+
+        fetch(this.lightboxImage)
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = this.lightboxAlt || 'download';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                a.remove();
+            })
+            .catch(err => {
+                console.error('Download error:', err);
+                this.toastr.error('Resim indirilirken bir hata oluştu');
+            });
+    }
+
     handleImageError() {
         this.profileImageUrl = this.defaultAvatar;
     }
