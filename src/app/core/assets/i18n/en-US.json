@@ -106,7 +106,10 @@
     "ERROR_403": "You do not have permission for this action.",
     "ERROR_404": "The requested resource was not found.",
     "ERROR_500": "A server error occurred. Please try again later.",
-    "ERROR_NETWORK": "Unable to connect to the server. Check your internet connection."
+    "ERROR_NETWORK": "Unable to connect to the server. Check your internet connection.",
+    "IMAGE_DELETED": "Image deleted successfully.",
+    "IMAGE_DELETE_ERROR": "Image could not be deleted.",
+    "IMAGE_DELETE_EXCEPTION": "An error occurred while deleting the image."
   },
   "COMMON": {
     "BACK": "Back",
@@ -121,7 +124,10 @@
     "FILES_SELECTED": "files selected",
     "DOWNLOAD": "Download",
     "CLOSE": "Close",
-    "ERROR_GENERIC": "An error occurred."
+    "ERROR_GENERIC": "An error occurred.",
+    "DELETE_CONFIRM": "Are you sure?",
+    "DELETE_CONFIRM_DESC": "Are you sure you want to delete the selected image? This action cannot be undone.",
+    "CONFIRM_DELETE": "Yes, Delete"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "Houses",

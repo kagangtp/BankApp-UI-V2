@@ -6,7 +6,8 @@ import { HouseService } from '../../core/services/houseService';
 import { FileService } from '../../core/services/fileService';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { forkJoin } from 'rxjs';
+import { from } from 'rxjs';
+import { concatMap, toArray } from 'rxjs/operators';
 
 @Component({
     selector: 'app-add-house',
@@ -36,7 +37,10 @@ export class AddHouse {
     onFilesSelected(event: Event) {
         const input = event.target as HTMLInputElement;
         if (input.files) {
-            this.selectedFiles = Array.from(input.files);
+            const newFiles = Array.from(input.files);
+            this.selectedFiles = [...this.selectedFiles, ...newFiles];
+            // Dosyalar eklendikten sonra aynı dosyanın tekrar seçilebilmesi için input değerini sıfırla
+            input.value = '';
         }
     }
 
@@ -63,17 +67,22 @@ export class AddHouse {
                         return;
                     }
 
-                    const uploads = this.selectedFiles.map(f => this.fileService.upload(f));
-                    forkJoin(uploads).subscribe({
-                        next: (uploadResults) => {
-                            const assigns = uploadResults.map((file: any) => {
-                                const fileId = file.data?.id || file.id;
-                                if (!fileId) {
-                                    console.error('File ID could not be retrieved from upload response', file);
-                                }
-                                return this.fileService.assignOwner(fileId, houseId, 'House');
-                            });
-                            forkJoin(assigns).subscribe({
+                    // Sırayla (sequential) yükleme yapıyoruz (Hata vermemesi için)
+                    from(this.selectedFiles).pipe(
+                        concatMap(f => this.fileService.upload(f)),
+                        toArray()
+                    ).subscribe({
+                        next: (uploadResults: any[]) => {
+                            from(uploadResults).pipe(
+                                concatMap((uploadRes: any) => {
+                                    const fileId = uploadRes.data?.id || uploadRes.id;
+                                    if (!fileId) {
+                                        console.error('File ID could not be retrieved from upload response', uploadRes);
+                                    }
+                                    return this.fileService.assignOwner(fileId, houseId, 'House');
+                                }),
+                                toArray()
+                            ).subscribe({
                                 next: () => {
                                     this.toastr.success(this.translate.instant('ADD_HOUSE_PAGE.SUCCESS_WITH_FILES'));
                                     this.goBack();

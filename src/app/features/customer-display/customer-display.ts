@@ -49,6 +49,13 @@ export class CustomerDisplay implements OnInit, OnDestroy {
   private searchSubscription?: Subscription;
 
   ngOnInit() {
+    const savedState = sessionStorage.getItem('customerListState');
+    if (savedState) {
+      const parsed = JSON.parse(savedState);
+      this.params = parsed.params || this.params;
+      this.history = parsed.history || this.history;
+    }
+
     this.loadCustomers();
     this.initUpdateForm(); // Formu başlat
     this.searchSubscription = this.searchSubject.pipe(
@@ -60,6 +67,12 @@ export class CustomerDisplay implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    // Sayfa değiştirilirken (ör. Ayarlara gidildiğinde) state'i kaydet
+    sessionStorage.setItem('customerListState', JSON.stringify({
+      params: this.params,
+      history: this.history
+    }));
+
     // Clean up to prevent memory leaks
     this.searchSubscription?.unsubscribe();
   }
@@ -188,6 +201,7 @@ export class CustomerDisplay implements OnInit, OnDestroy {
     this.params.searchTerm = searchTerm;
     this.params.lastId = 0;
     this.history = []; // Reset history on new search
+    this.saveState();
     this.loadCustomers();
   }
   //pagination with cursor
@@ -196,6 +210,7 @@ export class CustomerDisplay implements OnInit, OnDestroy {
       // Take the ID of the last item in the list
       const lastItem = this.displayCustomers[this.displayCustomers.length - 1];
       this.params.lastId = lastItem.id;
+      this.saveState();
 
       this.customerService.getCustomers(this.params).subscribe(response => {
         if (response.success) {
@@ -214,6 +229,7 @@ export class CustomerDisplay implements OnInit, OnDestroy {
       // 2. Set the new cursor to the last ID on the current screen
       const lastItem = this.displayCustomers[this.displayCustomers.length - 1];
       this.params.lastId = lastItem.id;
+      this.saveState();
 
       this.loadCustomers();
     }
@@ -226,6 +242,7 @@ export class CustomerDisplay implements OnInit, OnDestroy {
 
       // 2. Set lastId and reload
       this.params.lastId = previousId ?? 0;
+      this.saveState();
       this.loadCustomers();
     }
   }
@@ -235,7 +252,15 @@ export class CustomerDisplay implements OnInit, OnDestroy {
     this.params.pageSize = newSize;
     this.params.lastId = 0;   // Başa dön
     this.history = [];         // Geçmişi temizle
+    this.saveState();
     this.loadCustomers();
+  }
+
+  saveState() {
+    sessionStorage.setItem('customerListState', JSON.stringify({
+      params: this.params,
+      history: this.history
+    }));
   }
 
   exportExcel() {

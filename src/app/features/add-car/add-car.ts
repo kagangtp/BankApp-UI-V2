@@ -6,7 +6,8 @@ import { CarService } from '../../core/services/carService';
 import { FileService } from '../../core/services/fileService';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { forkJoin } from 'rxjs';
+import { from } from 'rxjs';
+import { concatMap, toArray } from 'rxjs/operators';
 
 @Component({
     selector: 'app-add-car',
@@ -36,7 +37,10 @@ export class AddCar implements OnInit {
     onFilesSelected(event: Event) {
         const input = event.target as HTMLInputElement;
         if (input.files) {
-            this.selectedFiles = Array.from(input.files);
+            const newFiles = Array.from(input.files);
+            this.selectedFiles = [...this.selectedFiles, ...newFiles];
+            // Dosyalar eklendikten sonra aynı dosyanın tekrar seçilebilmesi için input değerini sıfırla
+            input.value = '';
         }
     }
 
@@ -65,23 +69,23 @@ export class AddCar implements OnInit {
                         return;
                     }
 
-                    // 3. Dosyaları yükle
-                    const uploads = this.selectedFiles.map(f => this.fileService.upload(f));
-
-                    forkJoin(uploads).subscribe({
+                    // 3. Dosyaları sırayla (sequential) yükle (Concurrency / backend çökmesini önlemek için)
+                    from(this.selectedFiles).pipe(
+                        concatMap(f => this.fileService.upload(f)),
+                        toArray()
+                    ).subscribe({
                         next: (uploadResults: any[]) => {
-                            // 4. Her yüklenen dosya için atama yap
-                            const assigns = uploadResults.map((uploadRes: any) => {
-                                // .NET ResponseWrapper (success/data) yapısına göre ID'yi çek
-                                const fileId = uploadRes.data?.id || uploadRes.id;
-
-                                if (!fileId) {
-                                    console.error('File ID could not be retrieved from upload response', uploadRes);
-                                }
-                                return this.fileService.assignOwner(fileId, carId, 'Car');
-                            });
-
-                            forkJoin(assigns).subscribe({
+                            // 4. Her yüklenen dosya için atamayı da sırayla yap
+                            from(uploadResults).pipe(
+                                concatMap((uploadRes: any) => {
+                                    const fileId = uploadRes.data?.id || uploadRes.id;
+                                    if (!fileId) {
+                                        console.error('File ID could not be retrieved from upload response', uploadRes);
+                                    }
+                                    return this.fileService.assignOwner(fileId, carId, 'Car');
+                                }),
+                                toArray()
+                            ).subscribe({
                                 next: () => {
                                     this.toastr.success(this.translate.instant('ADD_CAR_PAGE.SUCCESS_WITH_FILES'));
                                     this.goBack();

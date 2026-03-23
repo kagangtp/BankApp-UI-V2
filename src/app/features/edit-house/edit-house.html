@@ -17,11 +17,58 @@
                 [placeholder]="'COMMON.DESCRIPTION_PLACEHOLDER' | translate" rows="3"></textarea>
         </div>
 
+        <div class="form-group" *ngIf="images.length > 0">
+            <label>{{ 'COMMON.IMAGES' | translate }}</label>
+            <div class="images-row">
+                @for (img of images; track img.id) {
+                <div class="image-thumb">
+                    <img [src]="img.relativePath" [alt]="img.fileName"/>
+                    <button class="btn-delete-image" (click)="deleteImage(img)" title="Sil">🗑️</button>
+                </div>
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>{{ 'COMMON.IMAGES' | translate }} (Yeni Ekle)</label>
+            <div class="file-upload-area">
+                <input type="file" id="fileInput" multiple accept="image/*" (change)="onFilesSelected($event)" hidden>
+                <label for="fileInput" class="file-upload-btn">
+                    📎 {{ 'COMMON.SELECT_FILE' | translate }}
+                </label>
+                <span class="file-count" *ngIf="selectedFiles.length > 0">
+                    {{ selectedFiles.length }} {{ 'COMMON.FILES_SELECTED' | translate }}
+                </span>
+            </div>
+
+            <div class="selected-files" *ngIf="selectedFiles.length > 0">
+                @for (file of selectedFiles; track $index) {
+                <div class="file-chip">
+                    <span>📄 {{ file.name }}</span>
+                    <button class="chip-remove" (click)="removeFile($index)">×</button>
+                </div>
+                }
+            </div>
+        </div>
+
         <div class="form-footer">
             <button class="btn-secondary" (click)="goBack()">{{ 'COMMON.CANCEL' | translate }}</button>
             <button class="btn-primary" (click)="onSubmit()" [disabled]="!address.trim() || isSubmitting">
                 {{ isSubmitting ? ('COMMON.SAVING' | translate) : ('COMMON.UPDATE' | translate) }}
             </button>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Custom Modal -->
+    <div class="modal-overlay" *ngIf="imageToDelete">
+        <div class="modal-content delete-modal">
+            <div class="modal-icon">⚠️</div>
+            <h3>{{ 'COMMON.DELETE_CONFIRM' | translate }}</h3>
+            <p>{{ 'COMMON.DELETE_CONFIRM_DESC' | translate }}</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" (click)="cancelDelete()">{{ 'COMMON.CANCEL' | translate }}</button>
+                <button class="btn-danger" (click)="confirmDelete()">{{ 'COMMON.CONFIRM_DELETE' | translate }}</button>
+            </div>
         </div>
     </div>
 </div>

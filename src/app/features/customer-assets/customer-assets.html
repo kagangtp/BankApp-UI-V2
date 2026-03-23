@@ -32,7 +32,10 @@
                 <div class="asset-card-header">
                     <span class="asset-badge">#{{ house.id }}</span>
                     <span class="asset-title">{{ house.address }}</span>
-                    <button class="btn-edit" (click)="goEditHouse(house.id)">✏️</button>
+                    <div class="asset-card-actions">
+                        <button class="btn-edit" (click)="goEditHouse(house.id)" title="Düzenle">✏️</button>
+                        <button class="btn-delete-asset" (click)="deleteAsset(house, 'House')" title="Sil">🗑️</button>
+                    </div>
                 </div>
                 <p class="asset-desc" *ngIf="house.description">{{ house.description }}</p>
                 <div class="images-row" *ngIf="house.images && house.images.length > 0">
@@ -67,7 +70,10 @@
                 <div class="asset-card-header">
                     <span class="asset-badge">#{{ car.id }}</span>
                     <span class="asset-title">{{ car.plate }}</span>
-                    <button class="btn-edit" (click)="goEditCar(car.id)">✏️</button>
+                    <div class="asset-card-actions">
+                        <button class="btn-edit" (click)="goEditCar(car.id)" title="Düzenle">✏️</button>
+                        <button class="btn-delete-asset" (click)="deleteAsset(car, 'Car')" title="Sil">🗑️</button>
+                    </div>
                 </div>
                 <p class="asset-desc" *ngIf="car.description">{{ car.description }}</p>
                 <div class="images-row" *ngIf="car.images && car.images.length > 0">
@@ -97,5 +103,18 @@
         <button class="lightbox-close" (click)="closeLightbox()" [title]="'COMMON.CLOSE' | translate">✕</button>
         <img [src]="lightboxImage" [alt]="lightboxAlt" />
         <p class="lightbox-caption">{{ lightboxAlt }}</p>
+    </div>
+</div>
+
+<!-- Delete Confirmation Custom Modal -->
+<div class="modal-overlay" *ngIf="assetToDelete" (click)="cancelDeleteAsset()">
+    <div class="modal-content delete-modal" (click)="$event.stopPropagation()">
+        <div class="modal-icon">⚠️</div>
+        <h3>{{ 'COMMON.DELETE_CONFIRM' | translate }}</h3>
+        <p>Seçili {{ assetToDeleteType === 'Car' ? 'Arabayı' : 'Evi' }} silmek istediğinize emin misiniz? (İçindeki resimler de kalıcı olarak tamamen silinecektir.)</p>
+        <div class="modal-actions">
+            <button class="btn-secondary" (click)="cancelDeleteAsset()">{{ 'COMMON.CANCEL' | translate }}</button>
+            <button class="btn-danger" (click)="confirmDeleteAsset()">{{ 'COMMON.CONFIRM_DELETE' | translate }}</button>
+        </div>
     </div>
 </div>

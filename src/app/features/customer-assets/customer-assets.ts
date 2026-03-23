@@ -173,4 +173,56 @@ export class CustomerAssets implements OnInit {
     handleImageError() {
         this.profileImageUrl = this.defaultAvatar;
     }
+
+    // --- Deletion Logic ---
+    assetToDelete: any = null;
+    assetToDeleteType: 'Car' | 'House' | null = null;
+
+    deleteAsset(asset: any, type: 'Car' | 'House') {
+        this.assetToDelete = asset;
+        this.assetToDeleteType = type;
+    }
+
+    confirmDeleteAsset() {
+        if (!this.assetToDelete || !this.assetToDeleteType) return;
+
+        if (this.assetToDeleteType === 'Car') {
+            this.carService.deleteCar(this.assetToDelete.id).subscribe({
+                next: (res) => {
+                    if (res.success) {
+                        this.toastr.success('Araba ve dosyaları başarıyla silindi.');
+                        this.loadCars();
+                    } else {
+                        this.toastr.error('Araba silinemedi.');
+                    }
+                    this.cancelDeleteAsset();
+                },
+                error: () => {
+                    this.toastr.error('Bir hata oluştu.');
+                    this.cancelDeleteAsset();
+                }
+            });
+        } else if (this.assetToDeleteType === 'House') {
+            this.houseService.deleteHouse(this.assetToDelete.id).subscribe({
+                next: (res) => {
+                    if (res.success) {
+                        this.toastr.success('Ev ve dosyaları başarıyla silindi.');
+                        this.loadHouses();
+                    } else {
+                        this.toastr.error('Ev silinemedi.');
+                    }
+                    this.cancelDeleteAsset();
+                },
+                error: () => {
+                    this.toastr.error('Bir hata oluştu.');
+                    this.cancelDeleteAsset();
+                }
+            });
+        }
+    }
+
+    cancelDeleteAsset() {
+        this.assetToDelete = null;
+        this.assetToDeleteType = null;
+    }
 }

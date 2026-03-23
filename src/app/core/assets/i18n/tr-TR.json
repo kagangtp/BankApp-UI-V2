@@ -106,7 +106,10 @@
     "ERROR_403": "Bu işlem için yetkiniz bulunmuyor.",
     "ERROR_404": "Aradığınız kaynak bulunamadı.",
     "ERROR_500": "Sunucu hatası oluştu. Lütfen daha sonra tekrar deneyin.",
-    "ERROR_NETWORK": "Sunucuya bağlanılamıyor. İnternet bağlantınızı kontrol edin."
+    "ERROR_NETWORK": "Sunucuya bağlanılamıyor. İnternet bağlantınızı kontrol edin.",
+    "IMAGE_DELETED": "Resim başarıyla silindi.",
+    "IMAGE_DELETE_ERROR": "Resim silinemedi.",
+    "IMAGE_DELETE_EXCEPTION": "Resim silinirken hata oluştu."
   },
   "COMMON": {
     "BACK": "Geri",
@@ -121,7 +124,10 @@
     "FILES_SELECTED": "dosya seçildi",
     "DOWNLOAD": "İndir",
     "CLOSE": "Kapat",
-    "ERROR_GENERIC": "Bir hata oluştu."
+    "ERROR_GENERIC": "Bir hata oluştu.",
+    "DELETE_CONFIRM": "Emin misiniz?",
+    "DELETE_CONFIRM_DESC": "Seçili resmi silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
+    "CONFIRM_DELETE": "Evet, Sil"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "Evler",

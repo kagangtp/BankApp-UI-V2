@@ -27,4 +27,8 @@ export class FileService {
     downloadAsBlob(fileId: string): Observable<Blob> {
         return this.http.get(`${this.apiUrl}/${fileId}/download`, { responseType: 'blob' });
     }
+
+    deleteFile(fileId: string): Observable<any> {
+        return this.http.delete<any>(`${this.apiUrl}/${fileId}`);
+    }
 }
