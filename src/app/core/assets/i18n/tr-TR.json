@@ -40,7 +40,9 @@
     "TRANSACTIONS": "İşlemler",
     "EMAIL": "E-posta",
     "SETTINGS": "Ayarlar",
-    "LOGOUT": "Çıkış Yap"
+    "LOGOUT": "Çıkış Yap",
+    "SEARCH": "Menüde ara...",
+    "NO_RESULTS": "Sonuç bulunamadı"
   },
   "LOGIN_PAGE": {
     "WELCOME": "Tekrar Hoşgeldiniz",

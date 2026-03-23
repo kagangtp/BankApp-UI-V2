@@ -4,10 +4,13 @@ import { AuthService } from '../../core/services/authService';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-sidebar',
-  standalone: true, // Standalone olduğunu belirtmeyi unutma
-  imports: [TranslateModule, RouterModule], // Şablon (HTML) için modül
+  standalone: true,
+  imports: [CommonModule, FormsModule, TranslateModule, RouterModule],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
@@ -20,9 +23,41 @@ export class Sidebar {
   private translate = inject(TranslateService);
 
   isCollapsed = signal(false);
+  searchTerm = '';
+
+  navItems = [
+    { path: '/mainpage/dashboard', icon: '📊', labelKey: 'SIDEBAR.DASHBOARD' },
+    { path: '/mainpage/customers', icon: '👥', labelKey: 'SIDEBAR.CUSTOMERS' },
+    { path: '/mainpage/accounts', icon: '💳', labelKey: 'SIDEBAR.ACCOUNTS' },
+    { path: '/mainpage/transactions', icon: '💰', labelKey: 'SIDEBAR.TRANSACTIONS' },
+    { path: '/mainpage/send-email', icon: '✉️', labelKey: 'SIDEBAR.EMAIL' },
+  ];
+
+  footerItems = [
+    { path: '/mainpage/settings', icon: '⚙️', labelKey: 'SIDEBAR.SETTINGS' }
+  ];
+
+  get filteredNavItems() {
+    if (!this.searchTerm.trim()) return this.navItems;
+    const term = this.searchTerm.toLowerCase();
+    return this.navItems.filter(item => 
+      this.translate.instant(item.labelKey).toLowerCase().includes(term)
+    );
+  }
+
+  get filteredFooterItems() {
+    if (!this.searchTerm.trim()) return this.footerItems;
+    const term = this.searchTerm.toLowerCase();
+    return this.footerItems.filter(item => 
+      this.translate.instant(item.labelKey).toLowerCase().includes(term)
+    );
+  }
 
   toggleSidebar() {
-    this.isCollapsed.update(v => !v);
+    this.isCollapsed.update(v => {
+      if (!v) this.searchTerm = ''; // Silindiğinde veya kapandığında aramayı sıfırla
+      return !v;
+    });
   }
 
   onLogout() {

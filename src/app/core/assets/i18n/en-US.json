@@ -6,7 +6,9 @@
     "TRANSACTIONS": "Transactions",
     "EMAIL": "Email",
     "SETTINGS": "Settings",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "SEARCH": "Search menu...",
+    "NO_RESULTS": "No results found"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "Customer Management",

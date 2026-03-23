@@ -36,4 +36,5 @@ app-sidebar {
   overflow-y: auto;
   background-color: var(--bg-primary, #f8fafc);
   padding: 24px;
+  min-width: 0;
 }
