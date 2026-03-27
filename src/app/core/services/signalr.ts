@@ -17,7 +17,7 @@ export class SignalrService {
 
   private startConnection() {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('${environment.apiUrl}/notification-hub') // .NET Portuna dikkat!
+      .withUrl(`${environment.apiUrl}/notification-hub`) // .NET Portuna dikkat!
       .withAutomaticReconnect()
       .build();
 
