@@ -11,23 +11,52 @@ export class SignalrService {
   // Bildirimleri tutacak Signal (UI burayı dinleyecek)
   public notification = signal<any>(null);
 
-  constructor() {
-    this.startConnection();
-  }
+  // Uygulama açıldığında hiçbir şey yapmıyoruz, constructor boş kalıyor.
+  constructor() { }
 
-  private startConnection() {
+  /**
+   * Hub bağlantısını başlatır. 
+   * Bu metodu LOGIN BAŞARILI OLDUĞUNDA çağırmalısın.
+   */
+  public initHub() {
+    // Eğer halihazırda bağlıysa veya bağlanıyorsa tekrar deneme
+    if (this.hubConnection?.state === signalR.HubConnectionState.Connected ||
+      this.hubConnection?.state === signalR.HubConnectionState.Connecting) {
+      return;
+    }
+
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(`${environment.rootUrl}/notification-hub`) // .NET Portuna dikkat!
-      .withAutomaticReconnect()
+      .withUrl(`${environment.rootUrl}/notification-hub`, {
+        // Backend [Authorize] bekliyorsa token'ı buradan ekliyoruz
+        accessTokenFactory: () => localStorage.getItem('token') || ''
+      })
+      .withAutomaticReconnect() // İnternet koparsa otomatik tekrar bağlanır
+      .configureLogging(signalR.LogLevel.Information)
       .build();
 
     this.hubConnection.start()
-      .then(() => console.log('SignalR bağlantısı başarılı!'))
-      .catch(err => console.error('Error:', err));
+      .then(() => console.log('✅ SignalR: Yetkili bağlantı kuruldu!'))
+      .catch(err => console.error('❌ SignalR Bağlantı Hatası:', err));
 
-    // Backend'deki "ReceiveNotification" metodunu dinle
+    // Dinleyiciyi kur
     this.hubConnection.on('ReceiveNotification', (data) => {
+      console.log('🔔 Yeni Bildirim:', data);
       this.notification.set(data);
     });
+  }
+
+  /**
+   * Hub bağlantısını keser.
+   * Bu metodu LOGOUT yaptığında çağırmalısın.
+   */
+  public stopHub() {
+    if (this.hubConnection) {
+      this.hubConnection.stop()
+        .then(() => {
+          console.log('🚫 SignalR: Bağlantı güvenli şekilde kapatıldı.');
+          this.notification.set(null); // Eski bildirimleri temizle
+        })
+        .catch(err => console.error('SignalR Stop Error:', err));
+    }
   }
 }
