@@ -66,6 +66,24 @@
   font-weight: 600;
 }
 
+.nav-link.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(1);
+  pointer-events: all; /* Keep tooltip working */
+  position: relative;
+}
+
+.lock-icon {
+  margin-left: auto;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+:host-context(.sidebar-collapsed) .lock-icon {
+  display: none;
+}
+
 .icon {
   min-width: 24px;
   display: flex;

@@ -1,33 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, effect, inject } from '@angular/core'; // effect eklendi
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import trTranslations from './core/assets/i18n/tr-TR.json';
-import enTranslations from './core/assets/i18n/en-US.json';
 import { SpinnerComponent } from './layout/spinner/spinner';
 import { ThemeService } from './core/services/themeService';
+import { SignalrService } from './core/services/signalr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet, SpinnerComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App implements OnInit {
-  protected title = 'UI';
+  protected title = 'BankApp';
 
-  constructor(private translate: TranslateService, private themeService: ThemeService) {
-    // 1. Set the default fallback language in case a translation is missing
+  constructor(
+    private translate: TranslateService,
+    private themeService: ThemeService,
+    private signalrService: SignalrService, // Servis burada uyanıyor
+    private toastr: ToastrService
+  ) {
     this.translate.setFallbackLang('en-US');
+
+    // --- DOĞRU EFFECT KULLANIMI ---
+    // effect, constructor içinde çağrılmalıdır. 
+    // Signal her değiştiğinde bu blok otomatik tetiklenir.
+    effect(() => {
+      const data = this.signalrService.notification();
+      if (data) {
+        this.toastr.info(data.message, data.action || 'Sistem Bildirimi', {
+          progressBar: true,
+          closeButton: true
+        });
+      }
+    });
   }
 
   ngOnInit(): void {
-    // 2. Read the same key your interceptor uses
     const savedLang = localStorage.getItem('language') || 'en-US';
-
-    // 3. Tell the UI to load the corresponding JSON file
     this.translate.use(savedLang);
-
-    // 4. Load saved theme and accent color
     this.themeService.loadSavedTheme();
   }
 }

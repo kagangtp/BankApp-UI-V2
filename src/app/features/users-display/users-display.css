@@ -93,6 +93,106 @@
     gap: 12px;
 }
 
+.is-admin-view.list-header,
+.is-admin-view.list-card {
+    grid-template-columns: 1.5fr 2fr 1fr 1fr 1.2fr;
+}
+
+.col-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.list-header .col-actions {
+    text-align: right;
+    display: block; /* Header text doesn't need flex if it's just text */
+}
+
+.action-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #e2e8f0);
+    background: var(--card-bg, #ffffff);
+    color: var(--text-secondary, #64748b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn .emoji {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.action-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.action-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn:hover:not(:disabled) .emoji {
+    transform: scale(1.1);
+}
+
+/* Promote Button - Emerald Theme */
+.action-btn.promote {
+    border-color: #d1fae5;
+    background: linear-gradient(135deg, #f0fdf4, #d1fae5);
+    color: #059669;
+}
+
+.action-btn.promote:hover:not(:disabled) {
+    background: #059669;
+    color: #ffffff;
+    border-color: #059669;
+}
+
+.action-btn.promote:hover:not(:disabled) .emoji {
+    transform: translateY(-2px) scale(1.1);
+}
+
+/* Demote Button - Rose Theme */
+.action-btn.demote {
+    border-color: #ffe4e6;
+    background: linear-gradient(135deg, #fff1f2, #ffe4e6);
+    color: #e11d48;
+}
+
+.action-btn.demote:hover:not(:disabled) {
+    background: #e11d48;
+    color: #ffffff;
+    border-color: #e11d48;
+}
+
+.action-btn.demote:hover:not(:disabled) .emoji {
+    transform: translateY(2px) scale(1.1);
+}
+
+.action-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    background: #f1f5f9;
+    filter: grayscale(1);
+    border-color: #e2e8f0;
+}
+
 .user-avatar-sm {
     width: 36px;
     height: 36px;

@@ -26,4 +26,12 @@ export class UserService {
   getAllUsers(): Observable<UserDto[]> {
     return this.http.get<UserDto[]>(this.apiUrl);
   }
+
+  promoteUser(id: number): Observable<UserDto> {
+    return this.http.put<UserDto>(`${this.apiUrl}/${id}/promote`, {});
+  }
+
+  demoteUser(id: number): Observable<UserDto> {
+    return this.http.put<UserDto>(`${this.apiUrl}/${id}/demote`, {});
+  }
 }

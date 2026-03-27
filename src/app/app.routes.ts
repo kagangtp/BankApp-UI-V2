@@ -19,6 +19,8 @@ import { UsersDisplay } from './features/users-display/users-display';
 import { CustomerDisplay } from './features/customer-display/customer-display';
 import { Transactions } from './features/transactions/transactions';
 
+import { roleGuard } from './core/guards/role-guard';
+
 export const routes: Routes = [
   { path: 'register', component: RegistrationPage },
   {
@@ -38,9 +40,9 @@ export const routes: Routes = [
       { path: 'customer/:id/add-house', component: AddHouse },
       { path: 'customer/:id/edit-car/:carId', component: EditCar },
       { path: 'customer/:id/edit-house/:houseId', component: EditHouse },
-      { path: 'send-email', component: SendEmail },
+      { path: 'send-email', component: SendEmail, canActivate: [roleGuard], data: { roles: ['Admin'] } },
       { path: 'settings', component: Settings },
-      { path: 'accounts', component: UsersDisplay },
+      { path: 'accounts', component: UsersDisplay, canActivate: [roleGuard], data: { roles: ['Admin'] } },
       { path: 'customers', component: CustomerDisplay },
       { path: 'transactions', component: Transactions },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }

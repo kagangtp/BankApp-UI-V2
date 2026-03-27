@@ -27,10 +27,18 @@
 
   <div class="sidebar-nav">
     @for (item of filteredNavItems; track item.path) {
-    <a [routerLink]="item.path" routerLinkActive="active" class="nav-link">
-      <span class="icon">{{ item.icon }}</span>
-      <span class="nav-text">{{ item.labelKey | translate }}</span>
-    </a>
+      @if (hasAccess(item)) {
+        <a [routerLink]="item.path" routerLinkActive="active" class="nav-link">
+          <span class="icon">{{ item.icon }}</span>
+          <span class="nav-text">{{ item.labelKey | translate }}</span>
+        </a>
+      } @else {
+        <div class="nav-link disabled" [title]="'SIDEBAR.UNAUTHORIZED' | translate">
+          <span class="icon">{{ item.icon }}</span>
+          <span class="nav-text">{{ item.labelKey | translate }}</span>
+          <span class="lock-icon">🔒</span>
+        </div>
+      }
     }
     
     @if (filteredNavItems.length === 0 && filteredFooterItems.length === 0) {
@@ -42,10 +50,18 @@
 
   <div class="sidebar-footer">
     @for (item of filteredFooterItems; track item.path) {
-    <a [routerLink]="item.path" routerLinkActive="active" class="nav-link">
-      <span class="icon">{{ item.icon }}</span>
-      <span class="nav-text">{{ item.labelKey | translate }}</span>
-    </a>
+      @if (hasAccess(item)) {
+        <a [routerLink]="item.path" routerLinkActive="active" class="nav-link">
+          <span class="icon">{{ item.icon }}</span>
+          <span class="nav-text">{{ item.labelKey | translate }}</span>
+        </a>
+      } @else {
+        <div class="nav-link disabled" [title]="'SIDEBAR.UNAUTHORIZED' | translate">
+          <span class="icon">{{ item.icon }}</span>
+          <span class="nav-text">{{ item.labelKey | translate }}</span>
+          <span class="lock-icon">🔒</span>
+        </div>
+      }
     }
 
     <button (click)="onLogout()" class="logout-button">

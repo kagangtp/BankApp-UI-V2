@@ -7,11 +7,14 @@
     </div>
 
     <div class="user-list-container">
-        <div class="list-header">
+        <div class="list-header" [class.is-admin-view]="isAdmin">
             <span class="col-username">{{ 'USERS_DISPLAY_PAGE.COL_USERNAME' | translate }}</span>
             <span class="col-email">{{ 'USERS_DISPLAY_PAGE.COL_EMAIL' | translate }}</span>
             <span class="col-role">{{ 'USERS_DISPLAY_PAGE.COL_ROLE' | translate }}</span>
             <span class="col-date">{{ 'USERS_DISPLAY_PAGE.COL_DATE' | translate }}</span>
+            @if (isAdmin) {
+                <span class="col-actions">{{ 'USERS_DISPLAY_PAGE.COL_ACTIONS' | translate }}</span>
+            }
         </div>
 
         @if (isLoading) {
@@ -21,7 +24,7 @@
         </div>
         } @else {
             @for (user of users; track user.id) {
-            <div class="list-card">
+            <div class="list-card" [class.is-admin-view]="isAdmin">
                 <div class="col-username">
                     <div class="user-avatar-sm">{{ user.username.charAt(0).toUpperCase() }}</div>
                     <span class="username-text">{{ user.username }}</span>
@@ -37,6 +40,22 @@
                 <div class="col-date">
                     <span class="date-text">{{ user.createdAt | date:'dd MMM yyyy' }}</span>
                 </div>
+                @if (isAdmin) {
+                <div class="col-actions">
+                    <button class="action-btn promote" 
+                            (click)="promote(user)" 
+                            [disabled]="user.role === 'Admin'"
+                            [title]="'USERS_DISPLAY_PAGE.PROMOTE' | translate">
+                        <span class="emoji">🚀</span>
+                    </button>
+                    <button class="action-btn demote" 
+                            (click)="demote(user)" 
+                            [disabled]="user.role === 'Staff' || !canDemote(user)"
+                            [title]="'USERS_DISPLAY_PAGE.DEMOTE' | translate">
+                        <span class="emoji">📉</span>
+                    </button>
+                </div>
+                }
             </div>
             } @empty {
             <div class="empty-state">

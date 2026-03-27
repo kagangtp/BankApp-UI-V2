@@ -42,7 +42,8 @@
     "SETTINGS": "Ayarlar",
     "LOGOUT": "Çıkış Yap",
     "SEARCH": "Menüde ara...",
-    "NO_RESULTS": "Sonuç bulunamadı"
+    "NO_RESULTS": "Sonuç bulunamadı",
+    "UNAUTHORIZED": "Bu işlemi yapmak için yetkiniz yok"
   },
   "LOGIN_PAGE": {
     "WELCOME": "Tekrar Hoşgeldiniz",
@@ -225,6 +226,9 @@
     "COL_DATE": "KAYIT TARİHİ",
     "LOADING": "Kullanıcılar yükleniyor...",
     "EMPTY": "Kullanıcı bulunamadı.",
-    "NO_ROLE": "Rol Yok"
+    "NO_ROLE": "Rol Yok",
+    "COL_ACTIONS": "İŞLEMLER",
+    "PROMOTE": "Terfi Et",
+    "DEMOTE": "Rütbe Düşür"
   }
 }

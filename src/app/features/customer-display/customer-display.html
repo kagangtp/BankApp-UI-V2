@@ -15,6 +15,7 @@
             </div>
         </div>
 
+        <!-- Rol kısıtlaması şimdilik yoruma alındı: [disabled]="!authService.hasRole(['Admin', 'Manager'])" -->
         <button class="btn-primary add-btn" (click)="onAdd()">
             <span>+</span> {{ 'CUSTOMERS_DISPLAY_PAGE.ADD_BUTTON' | translate }}
         </button>
@@ -47,8 +48,10 @@
             </div>
             <div class="col-actions text-center">
                 <button class="btn-icon assets" (click)="goToAssets(customer.id)" title="Varlıklar">📁</button>
+                <!-- Rol kısıtlaması şimdilik yoruma alındı: [disabled]="!authService.hasRole(['Admin', 'Manager'])" -->
                 <button class="btn-icon edit" (click)="onEdit(customer)"
                     [title]="'MODALS.EDIT_TITLE' | translate">✏️</button>
+                <!-- Rol kısıtlaması şimdilik yoruma alındı: [disabled]="!authService.hasRole(['Admin'])" -->
                 <button class="btn-icon delete" (click)="onDelete(customer.id)" title="Sil">🗑️</button>
             </div>
         </div>

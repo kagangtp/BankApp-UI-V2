@@ -8,7 +8,8 @@
     "SETTINGS": "Settings",
     "LOGOUT": "Logout",
     "SEARCH": "Search menu...",
-    "NO_RESULTS": "No results found"
+    "NO_RESULTS": "No results found",
+    "UNAUTHORIZED": "You do not have permission for this action"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "Customer Management",
@@ -227,6 +228,9 @@
     "COL_DATE": "REGISTRATION DATE",
     "LOADING": "Loading users...",
     "EMPTY": "No users found.",
-    "NO_ROLE": "No Role"
+    "NO_ROLE": "No Role",
+    "COL_ACTIONS": "ACTIONS",
+    "PROMOTE": "Promote",
+    "DEMOTE": "Demote"
   }
 }

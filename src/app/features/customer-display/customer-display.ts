@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'; // 1. Bunları ekle
 import { CustomerService } from '../../core/services/customerService';
+import { AuthService } from '../../core/services/authService';
 import { Customer } from '../../core/models/customer';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subject, Subscription } from 'rxjs';
@@ -23,6 +24,7 @@ export class CustomerDisplay implements OnInit, OnDestroy {
 
   customerService = inject(CustomerService);
   exportService = inject(ExportService);
+  public authService = inject(AuthService);
   private fb = inject(FormBuilder); // 3. FormBuilder'ı inject et
   private toastr = inject(ToastrService);
   private translate = inject(TranslateService);
@@ -83,7 +85,7 @@ export class CustomerDisplay implements OnInit, OnDestroy {
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       balance: [0, [Validators.required]],
-      tcKimlikNo: ['', [Validators.pattern('^[1-9]{1}[0-9]{10}$')]]
+      tcKimlikNo: ['', [Validators.pattern('^$|^[1-9]{1}[0-9]{10}$')]]
     });
   }
 

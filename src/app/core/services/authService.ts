@@ -7,7 +7,6 @@ import { SingleResponseModel } from '../models/responses/single-response-model';
 import { ResponseModel } from '../models/responses/response-model';
 import { environment } from '../../../environments/environment';
 
-// Backend'den dönen LoginResponseDto'ya karşılık gelen interface
 export interface LoginResponse {
   accessToken: string;
   expiresAt: string;
@@ -26,7 +25,7 @@ export class AuthService {
     return this.http.post<SingleResponseModel<LoginResponse>>(
       `${this.authUrl}/login`,
       loginData,
-      { withCredentials: true } // Cookie'yi almak için şart
+      { withCredentials: true }
     );
   }
 
@@ -36,18 +35,18 @@ export class AuthService {
   }
 
   // --- Refresh Token ---
-  // 401 alınca interceptor tarafından otomatik çağrılacak
   refreshToken(): Observable<SingleResponseModel<LoginResponse>> {
     return this.http.post<SingleResponseModel<LoginResponse>>(
       `${this.authUrl}/refresh`,
       {},
-      { withCredentials: true } // HttpOnly cookie otomatik gönderilir
+      { withCredentials: true }
     ).pipe(
       tap(response => {
         if (response.success) {
-          // Yeni access token'ı her iki storage'a da yaz (hangisi aktifse)
           const storage = localStorage.getItem('token') ? localStorage : sessionStorage;
           storage.setItem('token', response.data.accessToken);
+          // Token yenilendiğinde user objesini de güncelliyoruz
+          this.saveToken(response.data.accessToken, !!localStorage.getItem('token'));
         }
       })
     );
@@ -64,13 +63,11 @@ export class AuthService {
 
   // --- Logout ---
   logout() {
-    // Önce backend'deki token'ı iptal et
     this.revokeToken().subscribe({
       next: () => console.log('Refresh token iptal edildi.'),
       error: () => console.warn('Revoke başarısız oldu, yine de çıkış yapılıyor.')
     });
 
-    // Ardından local verileri temizle
     localStorage.removeItem('token');
     sessionStorage.removeItem('token');
     localStorage.removeItem('currentUser');
@@ -84,31 +81,69 @@ export class AuthService {
 
   saveToken(token: string, rememberMe: boolean = false) {
     if (rememberMe) {
-        localStorage.setItem('token', token);
+      localStorage.setItem('token', token);
     } else {
-        sessionStorage.setItem('token', token);
+      sessionStorage.setItem('token', token);
     }
 
     try {
-        const decodedToken: any = jwtDecode(token);
-        const user = {
-            id: decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'] || decodedToken.nameid || decodedToken.sub,
-            email: decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'] || decodedToken.email,
-            role: decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] || decodedToken.role
-        };
+      const decodedToken: any = jwtDecode(token);
 
-        if (rememberMe) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-        } else {
-            sessionStorage.setItem('currentUser', JSON.stringify(user));
-        }
+      const user = {
+        id: decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'] || decodedToken.nameid || decodedToken.sub,
+        email: decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'] || decodedToken.email,
+        role: decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] || decodedToken.role,
+
+        // YENİ: Backend'den gelecek custom permissions claim'ini yakalıyoruz
+        permissions: decodedToken.permissions || decodedToken.Permissions || []
+      };
+
+      if (rememberMe) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      } else {
+        sessionStorage.setItem('currentUser', JSON.stringify(user));
+      }
     } catch (e) {
-        console.error("Token decode error:", e);
+      console.error("Token decode error:", e);
     }
   }
 
   isLoggedIn(): boolean {
     const token = this.getToken();
     return !!token;
+  }
+
+  // --- Permission Check Helper (YENİ) ---
+  hasPermission(requiredPermissions: string[]): boolean {
+    const userStr = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
+    if (!userStr) return false;
+
+    try {
+      const user = JSON.parse(userStr);
+      if (!user.permissions) return false;
+
+      const userPermissions: string[] = Array.isArray(user.permissions) ? user.permissions : [user.permissions];
+
+      // İstenen yetkilerden herhangi birine sahipse true döner (.every() kullanarak "hepsine sahip olmalı" şeklinde de değiştirebilirsin)
+      return requiredPermissions.some(p => userPermissions.includes(p));
+    } catch {
+      return false;
+    }
+  }
+
+  // --- Role Check Helper (Geriye dönük uyumluluk veya UI logic için bırakıldı) ---
+  hasRole(allowedRoles: string[]): boolean {
+    const userStr = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
+    if (!userStr) return false;
+
+    try {
+      const user = JSON.parse(userStr);
+      if (!user.role) return false;
+
+      const userRoles: string[] = Array.isArray(user.role) ? user.role : [user.role];
+      return userRoles.some(r => allowedRoles.includes(r));
+    } catch {
+      return false;
+    }
   }
 }
