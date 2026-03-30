@@ -5,6 +5,7 @@ import { SpinnerComponent } from './layout/spinner/spinner';
 import { ThemeService } from './core/services/themeService';
 import { SignalrService } from './core/services/signalr';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from './core/services/authService';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ export class App implements OnInit {
     private translate: TranslateService,
     private themeService: ThemeService,
     private signalrService: SignalrService, // Servis burada uyanıyor
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthService
   ) {
     this.translate.setFallbackLang('en-US');
 
@@ -42,5 +44,9 @@ export class App implements OnInit {
     const savedLang = localStorage.getItem('language') || 'en-US';
     this.translate.use(savedLang);
     this.themeService.loadSavedTheme();
+
+    if (this.authService.isLoggedIn()) {
+      this.signalrService.initHub();
+    }
   }
 }

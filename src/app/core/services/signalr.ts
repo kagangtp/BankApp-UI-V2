@@ -11,15 +11,9 @@ export class SignalrService {
   // Bildirimleri tutacak Signal (UI burayı dinleyecek)
   public notification = signal<any>(null);
 
-  // Uygulama açıldığında hiçbir şey yapmıyoruz, constructor boş kalıyor.
   constructor() { }
 
-  /**
-   * Hub bağlantısını başlatır. 
-   * Bu metodu LOGIN BAŞARILI OLDUĞUNDA çağırmalısın.
-   */
   public initHub() {
-    // Eğer halihazırda bağlıysa veya bağlanıyorsa tekrar deneme
     if (this.hubConnection?.state === signalR.HubConnectionState.Connected ||
       this.hubConnection?.state === signalR.HubConnectionState.Connecting) {
       return;
@@ -28,7 +22,7 @@ export class SignalrService {
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(`${environment.rootUrl}/notification-hub`, {
         // Backend [Authorize] bekliyorsa token'ı buradan ekliyoruz
-        accessTokenFactory: () => localStorage.getItem('token') || ''
+        accessTokenFactory: () => localStorage.getItem('token') || sessionStorage.getItem('token') || ''
       })
       .withAutomaticReconnect() // İnternet koparsa otomatik tekrar bağlanır
       .configureLogging(signalR.LogLevel.Information)

@@ -6,6 +6,7 @@ import { jwtDecode } from 'jwt-decode';
 import { SingleResponseModel } from '../models/responses/single-response-model';
 import { ResponseModel } from '../models/responses/response-model';
 import { environment } from '../../../environments/environment';
+import { SignalrService } from './signalr';
 
 export interface LoginResponse {
   accessToken: string;
@@ -18,6 +19,7 @@ export interface LoginResponse {
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
+  private signalrService = inject(SignalrService);
   private authUrl = environment.apiUrl + '/auth';
 
   // --- Login ---
@@ -26,6 +28,13 @@ export class AuthService {
       `${this.authUrl}/login`,
       loginData,
       { withCredentials: true }
+    ).pipe(
+      tap(response => {
+        if (response.success) {
+          this.saveToken(response.data.accessToken, loginData.rememberMe);
+          this.signalrService.initHub();
+        }
+      })
     );
   }
 
@@ -47,6 +56,7 @@ export class AuthService {
           storage.setItem('token', response.data.accessToken);
           // Token yenilendiğinde user objesini de güncelliyoruz
           this.saveToken(response.data.accessToken, !!localStorage.getItem('token'));
+          this.signalrService.initHub();
         }
       })
     );
@@ -63,6 +73,9 @@ export class AuthService {
 
   // --- Logout ---
   logout() {
+
+    this.signalrService.stopHub();
+
     this.revokeToken().subscribe({
       next: () => console.log('Refresh token iptal edildi.'),
       error: () => console.warn('Revoke başarısız oldu, yine de çıkış yapılıyor.')
