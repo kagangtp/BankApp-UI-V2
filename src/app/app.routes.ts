@@ -18,7 +18,7 @@ import { Settings } from './features/settings/settings';
 import { UsersDisplay } from './features/users-display/users-display';
 import { CustomerDisplay } from './features/customer-display/customer-display';
 import { Transactions } from './features/transactions/transactions';
-
+import { Messages } from './features/messages/messages';
 import { roleGuard } from './core/guards/role-guard';
 
 export const routes: Routes = [
@@ -45,6 +45,7 @@ export const routes: Routes = [
       { path: 'accounts', component: UsersDisplay, canActivate: [roleGuard], data: { roles: ['Admin'] } },
       { path: 'customers', component: CustomerDisplay },
       { path: 'transactions', component: Transactions },
+      { path: 'messages', component: Messages },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },

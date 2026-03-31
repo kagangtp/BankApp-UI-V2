@@ -1,0 +1,61 @@
+<div class="chat-page-container">
+    <div class="chat-card shadow-sm">
+
+        <div class="conversation-sidebar">
+            <div class="sidebar-search">
+                <input type="text" [placeholder]="'MESSAGES_PAGE.SEARCH' | translate">
+            </div>
+            <div class="users-list">
+                @for (user of users(); track user.id) {
+                <div class="user-item" [class.active]="selectedUserId() === user.id" (click)="selectUser(user.id)">
+                    <div class="user-avatar">{{ user.name[0] }}</div>
+                    <div class="user-details">
+                        <div class="name-row">
+                            <span class="user-name">{{ user.name }}</span>
+                            <span class="msg-time">{{ user.time }}</span>
+                        </div>
+                        <p class="last-msg">{{ user.lastMessage }}</p>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+
+        <div class="chat-main">
+            @if (selectedUserId()) {
+            <div class="chat-header">
+                <div class="header-info">
+                    <span class="status-dot"></span>
+                    <strong>{{ selectedUserName() }}</strong>
+                </div>
+            </div>
+
+            <div class="messages-area" #scrollContainer>
+                @for (m of chatMessages(); track $index) {
+                <div class="msg-wrapper" [class.is-me]="isMe(m.senderId)">
+                    <div class="msg-bubble">
+                        {{ m.content }}
+                        <span class="timestamp">{{ m.timestamp | date:'shortTime' }}</span>
+                    </div>
+                </div>
+                }
+            </div>
+
+            <div class="chat-footer">
+                <div class="input-group">
+                    <input type="text" [(ngModel)]="currentText" (keyup.enter)="onSend()"
+                        [placeholder]="'MESSAGES_PAGE.INPUT_PLACEHOLDER' | translate">
+                    <button class="btn-send" (click)="onSend()">
+                        <span>➤</span>
+                    </button>
+                </div>
+            </div>
+            } @else {
+            <div class="empty-state">
+                <p>{{ 'MESSAGES_PAGE.EMPTY_STATE' | translate }}</p>
+            </div>
+            }
+        </div>
+
+    </div>
+</div>

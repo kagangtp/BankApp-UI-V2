@@ -159,4 +159,17 @@ export class AuthService {
       return false;
     }
   }
+
+  getCurrentUserId(): string | null {
+    const userStr = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
+    if (!userStr) return null;
+
+    try {
+      const user = JSON.parse(userStr);
+      return user.id || null;
+    } catch (e) {
+      console.error("User parsing error:", e);
+      return null;
+    }
+  }
 }

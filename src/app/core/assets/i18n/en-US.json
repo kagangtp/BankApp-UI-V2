@@ -9,7 +9,8 @@
     "LOGOUT": "Logout",
     "SEARCH": "Search menu...",
     "NO_RESULTS": "No results found",
-    "UNAUTHORIZED": "You do not have permission for this action"
+    "UNAUTHORIZED": "You do not have permission for this action",
+    "MESSAGES": "Messages"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "Customer Management",
@@ -232,5 +233,10 @@
     "COL_ACTIONS": "ACTIONS",
     "PROMOTE": "Promote",
     "DEMOTE": "Demote"
+  },
+  "MESSAGES_PAGE": {
+    "SEARCH": "Search messages...",
+    "INPUT_PLACEHOLDER": "Type your message...",
+    "EMPTY_STATE": "Please select a user to start messaging."
   }
 }

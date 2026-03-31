@@ -30,6 +30,7 @@ export class Sidebar {
     { path: '/mainpage/customers', icon: '👥', labelKey: 'SIDEBAR.CUSTOMERS' },
     { path: '/mainpage/accounts', icon: '💳', labelKey: 'SIDEBAR.ACCOUNTS', roles: ['Admin'] },
     { path: '/mainpage/transactions', icon: '💰', labelKey: 'SIDEBAR.TRANSACTIONS' },
+    { path: '/mainpage/messages', icon: '💬', labelKey: 'SIDEBAR.MESSAGES' },
     { path: '/mainpage/send-email', icon: '✉️', labelKey: 'SIDEBAR.EMAIL', roles: ['Admin'] }, // Mail de admin olsun madem UserController öyleydi
   ];
 
