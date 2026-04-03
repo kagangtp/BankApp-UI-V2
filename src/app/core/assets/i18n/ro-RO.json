@@ -6,7 +6,11 @@
     "TRANSACTIONS": "Tranzacții",
     "EMAIL": "E-mail",
     "SETTINGS": "Setări",
-    "LOGOUT": "Deconectare"
+    "LOGOUT": "Deconectare",
+    "SEARCH": "Căutare meniu...",
+    "NO_RESULTS": "Niciun rezultat găsit",
+    "UNAUTHORIZED": "Nu aveți permisiunea pentru această acțiune",
+    "MESSAGES": "Mesaje"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "Gestionare clienți",
@@ -37,7 +41,9 @@
     "SAVE_CUSTOMER": "Salvează clientul",
     "CANCEL": "Anulează",
     "NAME_ERROR": "Trebuie să introduceți un nume valid (min. 3 caractere).",
-    "EMAIL_ERROR": "Vă rugăm introduceți o adresă de e-mail validă."
+    "EMAIL_ERROR": "Vă rugăm introduceți o adresă de e-mail validă.",
+    "TC_KIMLIK_LABEL": "CNP (TC)",
+    "TC_KIMLIK_ERROR": "Introduceți un CNP valid."
   },
   "EMPTY_STATE": "Nu s-au găsit clienți de afișat.",
   "LOGIN_PAGE": {
@@ -104,7 +110,10 @@
     "ERROR_403": "Nu aveți permisiunea pentru această acțiune.",
     "ERROR_404": "Resursa solicitată nu a fost găsită.",
     "ERROR_500": "A apărut o eroare de server. Vă rugăm încercați mai târziu.",
-    "ERROR_NETWORK": "Nu se poate conecta la server. Verificați conexiunea la internet."
+    "ERROR_NETWORK": "Nu se poate conecta la server. Verificați conexiunea la internet.",
+    "IMAGE_DELETED": "Imaginea a fost ștearsă cu succes.",
+    "IMAGE_DELETE_ERROR": "Imaginea nu a putut fi ștearsă.",
+    "IMAGE_DELETE_EXCEPTION": "A apărut o eroare la ștergerea imaginii."
   },
   "COMMON": {
     "BACK": "Înapoi",
@@ -119,7 +128,10 @@
     "FILES_SELECTED": "fișiere selectate",
     "ERROR_GENERIC": "A apărut o eroare.",
     "DOWNLOAD": "Descarcă",
-    "CLOSE": "Închide"
+    "CLOSE": "Închide",
+    "DELETE_CONFIRM": "Sunteți sigur?",
+    "DELETE_CONFIRM_DESC": "Sunteți sigur că doriți să ștergeți imaginea selectată? Această acțiune nu poate fi anulată.",
+    "CONFIRM_DELETE": "Da, șterge"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "Case",
@@ -205,7 +217,10 @@
     "COL_DATE": "DATA ÎNREGISTRĂRII",
     "LOADING": "Se încarcă utilizatorii...",
     "EMPTY": "Nu s-au găsit utilizatori.",
-    "NO_ROLE": "Fără rol"
+    "NO_ROLE": "Fără rol",
+    "COL_ACTIONS": "ACȚIUNI",
+    "PROMOTE": "Promovați",
+    "DEMOTE": "Retrogradați"
   },
   "SETTINGS_PAGE": {
     "TITLE": "Setări",
@@ -218,5 +233,10 @@
     "LANGUAGE_LABEL": "Limba aplicației",
     "COLOR_TITLE": "Culoare UI",
     "COLOR_DESC": "Schimbați culoarea aplicației."
+  },
+  "MESSAGES_PAGE": {
+    "SEARCH": "Căutare mesaje...",
+    "INPUT_PLACEHOLDER": "Scrieți mesajul dvs...",
+    "EMPTY_STATE": "Selectați un utilizator."
   }
 }

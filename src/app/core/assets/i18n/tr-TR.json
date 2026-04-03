@@ -202,7 +202,9 @@
     "DARK_MODE_LABEL": "Karanlık Mod",
     "LANGUAGE_TITLE": "Dil ve Bölge",
     "LANGUAGE_DESC": "Kullanmak istediğiniz dili seçin.",
-    "LANGUAGE_LABEL": "Uygulama Dili"
+    "LANGUAGE_LABEL": "Uygulama Dili",
+    "COLOR_TITLE": "UI Rengi",
+    "COLOR_DESC": "Uygulamanın rengini değiştirin."
   },
   "DASHBOARD_PAGE": {
     "TITLE": "Panel",

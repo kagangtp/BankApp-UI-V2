@@ -6,7 +6,11 @@
     "TRANSACTIONS": "交易",
     "EMAIL": "邮件",
     "SETTINGS": "设置",
-    "LOGOUT": "退出"
+    "LOGOUT": "退出",
+    "SEARCH": "搜索菜单...",
+    "NO_RESULTS": "未找到结果",
+    "UNAUTHORIZED": "您无权执行此操作",
+    "MESSAGES": "消息"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "客户管理",
@@ -37,7 +41,9 @@
     "SAVE_CUSTOMER": "保存客户",
     "CANCEL": "取消",
     "NAME_ERROR": "请输入有效姓名（至少3个字符）。",
-    "EMAIL_ERROR": "请输入有效的邮箱地址。"
+    "EMAIL_ERROR": "请输入有效的邮箱地址。",
+    "TC_KIMLIK_LABEL": "身份证 (TC)",
+    "TC_KIMLIK_ERROR": "请输入有效的身份证。"
   },
   "EMPTY_STATE": "未找到可显示的客户。",
   "LOGIN_PAGE": {
@@ -104,7 +110,10 @@
     "ERROR_403": "您没有执行此操作的权限。",
     "ERROR_404": "未找到请求的资源。",
     "ERROR_500": "发生服务器错误。请稍后重试。",
-    "ERROR_NETWORK": "无法连接到服务器。请检查您的网络连接。"
+    "ERROR_NETWORK": "无法连接到服务器。请检查您的网络连接。",
+    "IMAGE_DELETED": "图片删除成功。",
+    "IMAGE_DELETE_ERROR": "无法删除图片。",
+    "IMAGE_DELETE_EXCEPTION": "删除图片时发生错误。"
   },
   "COMMON": {
     "BACK": "返回",
@@ -119,7 +128,10 @@
     "FILES_SELECTED": "个文件已选择",
     "ERROR_GENERIC": "发生错误。",
     "DOWNLOAD": "下载",
-    "CLOSE": "关闭"
+    "CLOSE": "关闭",
+    "DELETE_CONFIRM": "确定吗？",
+    "DELETE_CONFIRM_DESC": "确定要删除所选图片吗？此操作无法撤消。",
+    "CONFIRM_DELETE": "是的，删除"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "房屋",
@@ -205,7 +217,10 @@
     "COL_DATE": "注册日期",
     "LOADING": "加载用户...",
     "EMPTY": "未找到用户。",
-    "NO_ROLE": "无角色"
+    "NO_ROLE": "无角色",
+    "COL_ACTIONS": "操作",
+    "PROMOTE": "晋升",
+    "DEMOTE": "降级"
   },
   "SETTINGS_PAGE": {
     "TITLE": "设置",
@@ -218,5 +233,10 @@
     "LANGUAGE_LABEL": "应用程序语言",
     "COLOR_TITLE": "界面颜色",
     "COLOR_DESC": "更改应用程序颜色。"
+  },
+  "MESSAGES_PAGE": {
+    "SEARCH": "搜索消息...",
+    "INPUT_PLACEHOLDER": "输入您的消息...",
+    "EMPTY_STATE": "请选择一个用户。"
   }
 }

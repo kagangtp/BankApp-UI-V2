@@ -29,7 +29,12 @@
     @for (item of filteredNavItems; track item.path) {
       @if (hasAccess(item)) {
         <a [routerLink]="item.path" routerLinkActive="active" class="nav-link">
-          <span class="icon">{{ item.icon }}</span>
+          <span class="icon-wrap">
+            <span class="icon">{{ item.icon }}</span>
+            @if (item.path === '/mainpage/messages' && messageService.hasGlobalUnread()) {
+              <span class="sidebar-unread-dot"></span>
+            }
+          </span>
           <span class="nav-text">{{ item.labelKey | translate }}</span>
         </a>
       } @else {

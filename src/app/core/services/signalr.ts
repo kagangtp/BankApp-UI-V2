@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 
 // Mesaj yapısını netleştirelim
 export interface ChatMessage {
+  id: number;
   senderId: string;
   receiverId: string;
   content: string;
@@ -49,17 +50,21 @@ export class SignalrService {
       this.notification.set(data);
     });
 
-    // 2. Chat Mesaj Dinleyicisi
-    this.hubConnection.on('ReceiveMessage', (senderId: string, receiverId: string, content: string, timestamp: string) => {
+    // 2. Chat Mesaj Dinleyicisi (artık id parametresi de alıyor)
+    this.hubConnection.on('ReceiveMessage', (senderId: string, receiverId: string, content: string, timestamp: string, id: number) => {
       const newMessage: ChatMessage = {
+        id,
         senderId,
         receiverId,
         content,
         timestamp: new Date(timestamp)
       };
 
-      // Mevcut mesaj listesine yeni mesajı ekle
-      this.messages.update(prev => [...prev, newMessage]);
+      // Duplicate kontrolü: Aynı id'ye sahip mesaj zaten varsa ekleme
+      this.messages.update(prev => {
+        if (id && prev.some(m => m.id === id)) return prev;
+        return [...prev, newMessage];
+      });
 
       this.unreadCount.update(count => count + 1);
     });

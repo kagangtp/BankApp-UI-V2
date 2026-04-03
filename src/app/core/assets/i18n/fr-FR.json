@@ -6,7 +6,11 @@
     "TRANSACTIONS": "Transactions",
     "EMAIL": "E-mail",
     "SETTINGS": "Paramètres",
-    "LOGOUT": "Déconnexion"
+    "LOGOUT": "Déconnexion",
+    "SEARCH": "Rechercher dans le menu...",
+    "NO_RESULTS": "Aucun résultat trouvé",
+    "UNAUTHORIZED": "Vous n'avez pas l'autorisation d'effectuer cette action",
+    "MESSAGES": "Messages"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "Gestion des clients",
@@ -37,7 +41,9 @@
     "SAVE_CUSTOMER": "Enregistrer le client",
     "CANCEL": "Annuler",
     "NAME_ERROR": "Vous devez entrer un nom valide (min. 3 caractères).",
-    "EMAIL_ERROR": "Veuillez entrer une adresse e-mail valide."
+    "EMAIL_ERROR": "Veuillez entrer une adresse e-mail valide.",
+    "TC_KIMLIK_LABEL": "Carte d'identité (TC)",
+    "TC_KIMLIK_ERROR": "Veuillez entrer un numéro valide."
   },
   "EMPTY_STATE": "Aucun client trouvé à afficher.",
   "LOGIN_PAGE": {
@@ -104,7 +110,10 @@
     "ERROR_403": "Vous n'avez pas la permission pour cette action.",
     "ERROR_404": "La ressource demandée n'a pas été trouvée.",
     "ERROR_500": "Une erreur serveur s'est produite. Veuillez réessayer plus tard.",
-    "ERROR_NETWORK": "Impossible de se connecter au serveur. Vérifiez votre connexion internet."
+    "ERROR_NETWORK": "Impossible de se connecter au serveur. Vérifiez votre connexion internet.",
+    "IMAGE_DELETED": "Image supprimée avec succès.",
+    "IMAGE_DELETE_ERROR": "Impossible de supprimer l'image.",
+    "IMAGE_DELETE_EXCEPTION": "Une erreur est survenue lors de la suppression de l'image."
   },
   "COMMON": {
     "BACK": "Retour",
@@ -119,7 +128,10 @@
     "FILES_SELECTED": "fichiers sélectionnés",
     "ERROR_GENERIC": "Une erreur s'est produite.",
     "DOWNLOAD": "Télécharger",
-    "CLOSE": "Fermer"
+    "CLOSE": "Fermer",
+    "DELETE_CONFIRM": "Êtes-vous sûr ?",
+    "DELETE_CONFIRM_DESC": "Êtes-vous sûr de vouloir supprimer l'image sélectionnée ? Cette action est irréversible.",
+    "CONFIRM_DELETE": "Oui, supprimer"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "Maisons",
@@ -205,7 +217,10 @@
     "COL_DATE": "DATE D'INSCRIPTION",
     "LOADING": "Chargement des utilisateurs...",
     "EMPTY": "Aucun utilisateur trouvé.",
-    "NO_ROLE": "Aucun rôle"
+    "NO_ROLE": "Aucun rôle",
+    "COL_ACTIONS": "ACTIONS",
+    "PROMOTE": "Promouvoir",
+    "DEMOTE": "Rétrograder"
   },
   "SETTINGS_PAGE": {
     "TITLE": "Paramètres",
@@ -218,5 +233,10 @@
     "LANGUAGE_LABEL": "Langue de l'application",
     "COLOR_TITLE": "Couleur UI",
     "COLOR_DESC": "Changez la couleur de l'application."
+  },
+  "MESSAGES_PAGE": {
+    "SEARCH": "Rechercher des messages...",
+    "INPUT_PLACEHOLDER": "Tapez votre message...",
+    "EMPTY_STATE": "Veuillez sélectionner un utilisateur."
   }
 }

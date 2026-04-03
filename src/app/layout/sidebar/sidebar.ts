@@ -1,6 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
-import { Router, RouterModule } from '@angular/router'; // Router eklendi
+import { Component, inject, signal, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/authService';
+import { MessageService } from '../../core/services/messageService';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,16 +15,24 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
-export class Sidebar {
+export class Sidebar implements OnInit {
   private authService = inject(AuthService);
-
-  // Hata buradaydı: RouterModule yerine Router inject edilmeli
   private router = inject(Router);
   private toastr = inject(ToastrService);
   private translate = inject(TranslateService);
+  public messageService = inject(MessageService);
 
   isCollapsed = signal(false);
   searchTerm = '';
+
+  ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+      this.messageService.getHasUnread().subscribe({
+        next: (res) => this.messageService.hasGlobalUnread.set(res.hasUnread),
+        error: () => {}
+      });
+    }
+  }
 
   navItems = [
     { path: '/mainpage/dashboard', icon: '📊', labelKey: 'SIDEBAR.DASHBOARD' },

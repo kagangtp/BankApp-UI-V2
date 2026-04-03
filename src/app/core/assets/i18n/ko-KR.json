@@ -6,7 +6,11 @@
     "TRANSACTIONS": "거래",
     "EMAIL": "이메일",
     "SETTINGS": "설정",
-    "LOGOUT": "로그아웃"
+    "LOGOUT": "로그아웃",
+    "SEARCH": "메뉴 검색...",
+    "NO_RESULTS": "결과 없음",
+    "UNAUTHORIZED": "이 작업에 대한 권한이 없습니다",
+    "MESSAGES": "메시지"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "고객 관리",
@@ -37,7 +41,9 @@
     "SAVE_CUSTOMER": "고객 저장",
     "CANCEL": "취소",
     "NAME_ERROR": "유효한 이름을 입력하세요 (최소 3자).",
-    "EMAIL_ERROR": "유효한 이메일 주소를 입력하세요."
+    "EMAIL_ERROR": "유효한 이메일 주소를 입력하세요.",
+    "TC_KIMLIK_LABEL": "국가 식별 번호 (TC)",
+    "TC_KIMLIK_ERROR": "유효한 번호를 입력하세요."
   },
   "EMPTY_STATE": "표시할 고객이 없습니다.",
   "LOGIN_PAGE": {
@@ -104,7 +110,10 @@
     "ERROR_403": "이 작업에 대한 권한이 없습니다.",
     "ERROR_404": "요청한 리소스를 찾을 수 없습니다.",
     "ERROR_500": "서버 오류가 발생했습니다. 나중에 다시 시도해 주세요.",
-    "ERROR_NETWORK": "서버에 연결할 수 없습니다. 인터넷 연결을 확인하세요."
+    "ERROR_NETWORK": "서버에 연결할 수 없습니다. 인터넷 연결을 확인하세요.",
+    "IMAGE_DELETED": "이미지가 성공적으로 삭제되었습니다.",
+    "IMAGE_DELETE_ERROR": "이미지를 삭제할 수 없습니다.",
+    "IMAGE_DELETE_EXCEPTION": "이미지 삭제 중 오류가 발생했습니다."
   },
   "COMMON": {
     "BACK": "뒤로",
@@ -119,7 +128,10 @@
     "FILES_SELECTED": "개 파일 선택됨",
     "ERROR_GENERIC": "오류가 발생했습니다.",
     "DOWNLOAD": "다운로드",
-    "CLOSE": "닫기"
+    "CLOSE": "닫기",
+    "DELETE_CONFIRM": "확실합니까?",
+    "DELETE_CONFIRM_DESC": "선택한 이미지를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+    "CONFIRM_DELETE": "예, 삭제"
   },
   "CUSTOMER_ASSETS_PAGE": {
     "HOUSES_TITLE": "주택",
@@ -205,7 +217,10 @@
     "COL_DATE": "등록일",
     "LOADING": "사용자 로딩 중...",
     "EMPTY": "사용자를 찾을 수 없습니다.",
-    "NO_ROLE": "역할 없음"
+    "NO_ROLE": "역할 없음",
+    "COL_ACTIONS": "작업",
+    "PROMOTE": "승급",
+    "DEMOTE": "강등"
   },
   "SETTINGS_PAGE": {
     "TITLE": "설정",
@@ -218,5 +233,10 @@
     "LANGUAGE_LABEL": "애플리케이션 언어",
     "COLOR_TITLE": "UI 색상",
     "COLOR_DESC": "애플리케이션 색상을 변경합니다."
+  },
+  "MESSAGES_PAGE": {
+    "SEARCH": "메시지 검색...",
+    "INPUT_PLACEHOLDER": "메시지를 입력하세요...",
+    "EMPTY_STATE": "사용자를 선택하세요."
   }
 }

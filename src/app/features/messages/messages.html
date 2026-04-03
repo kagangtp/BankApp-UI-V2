@@ -7,14 +7,24 @@
             </div>
             <div class="users-list">
                 @for (user of users(); track user.id) {
-                <div class="user-item" [class.active]="selectedUserId() === user.id" (click)="selectUser(user.id)">
-                    <div class="user-avatar">{{ user.name[0] }}</div>
+                <div class="user-item" [class.active]="selectedUserId() === user.id" [class.highlight]="highlightedUserId() === user.id" (click)="selectUser(user.id)">
+                    <div class="avatar-wrap">
+                        <div class="user-avatar">{{ user.name[0] }}</div>
+                        @if (user.hasUnread) {
+                        <span class="unread-dot"></span>
+                        }
+                    </div>
                     <div class="user-details">
                         <div class="name-row">
-                            <span class="user-name">{{ user.name }}</span>
-                            <span class="msg-time">{{ user.time }}</span>
+                            <span class="user-name" [class.has-unread]="user.hasUnread">{{ user.name }}</span>
+                            @if (user.timestamp) {
+                                <span class="msg-time-wrapper">
+                                    <span class="msg-date">{{ user.dateInfo }}</span>
+                                    <span class="msg-hour">{{ user.timeInfo }}</span>
+                                </span>
+                            }
                         </div>
-                        <p class="last-msg">{{ user.lastMessage }}</p>
+                        <p class="last-msg" [class.has-unread]="user.hasUnread">{{ user.lastMessage }}</p>
                     </div>
                 </div>
                 }
@@ -31,11 +41,20 @@
             </div>
 
             <div class="messages-area" #scrollContainer>
-                @for (m of chatMessages(); track $index) {
+                @if (isLoadingHistory()) {
+                <div class="loading-history">
+                    <div class="spinner"></div>
+                    <span>{{ 'MESSAGES_PAGE.LOADING_HISTORY' | translate }}</span>
+                </div>
+                }
+                @for (m of chatMessages(); track m.id ?? $index) {
                 <div class="msg-wrapper" [class.is-me]="isMe(m.senderId)">
                     <div class="msg-bubble">
                         {{ m.content }}
-                        <span class="timestamp">{{ m.timestamp | date:'shortTime' }}</span>
+                        <span class="timestamp-wrapper">
+                            <span class="msg-date">{{ m.dateStr }}</span>
+                            <span class="msg-hour">{{ m.timeStr }}</span>
+                        </span>
                     </div>
                 </div>
                 }
