@@ -10,7 +10,8 @@
     "SEARCH": "Rechercher dans le menu...",
     "NO_RESULTS": "Aucun résultat trouvé",
     "UNAUTHORIZED": "Vous n'avez pas l'autorisation d'effectuer cette action",
-    "MESSAGES": "Messages"
+    "MESSAGES": "Messages",
+    "AI_CHAT": "Assistant IA"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "Gestion des clients",
@@ -238,5 +239,19 @@
     "SEARCH": "Rechercher des messages...",
     "INPUT_PLACEHOLDER": "Tapez votre message...",
     "EMPTY_STATE": "Veuillez sélectionner un utilisateur."
+  },
+  "AI_CHAT": {
+    "TITLE": "Assistant Bancaire IA",
+    "STATUS_ONLINE": "En ligne",
+    "PLACEHOLDER": "Posez-moi des questions sur la banque...",
+    "CLEAR": "Effacer le chat",
+    "THINKING": "Réflexion...",
+    "WELCOME_TITLE": "Bienvenue sur l'Assistant Bancaire IA",
+    "WELCOME_DESC": "Je peux vous aider avec des questions bancaires, des conseils financiers et la compréhension de vos opérations.",
+    "SUGGESTION_1": "Quels services propose BankApp ?",
+    "SUGGESTION_2": "Quels sont les taux d'intérêt ?",
+    "SUGGESTION_3": "Comment mieux gérer mes finances ?",
+    "DISCLAIMER": "Les réponses IA sont à titre informatif uniquement. Pas de conseils financiers.",
+    "ERROR_RESPONSE": "Désolé, je n'ai pas pu générer de réponse. Veuillez réessayer plus tard."
   }
 }

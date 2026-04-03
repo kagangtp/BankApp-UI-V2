@@ -10,7 +10,8 @@
     "SEARCH": "Search menu...",
     "NO_RESULTS": "No results found",
     "UNAUTHORIZED": "You do not have permission for this action",
-    "MESSAGES": "Messages"
+    "MESSAGES": "Messages",
+    "AI_CHAT": "AI Assistant"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "Customer Management",
@@ -238,5 +239,19 @@
     "SEARCH": "Search messages...",
     "INPUT_PLACEHOLDER": "Type your message...",
     "EMPTY_STATE": "Please select a user to start messaging."
+  },
+  "AI_CHAT": {
+    "TITLE": "AI Bank Assistant",
+    "STATUS_ONLINE": "Online",
+    "PLACEHOLDER": "Ask me anything about banking...",
+    "CLEAR": "Clear Chat",
+    "THINKING": "Thinking...",
+    "WELCOME_TITLE": "Welcome to AI Bank Assistant",
+    "WELCOME_DESC": "I can help you with banking questions, financial advice, and understanding your operations.",
+    "SUGGESTION_1": "What services does BankApp offer?",
+    "SUGGESTION_2": "What are the interest rates?",
+    "SUGGESTION_3": "How to manage finances better?",
+    "DISCLAIMER": "AI responses are for informational purposes only. Not financial advice.",
+    "ERROR_RESPONSE": "Sorry, I could not generate a response. Please try again later."
   }
 }

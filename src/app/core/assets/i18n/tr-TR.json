@@ -44,7 +44,8 @@
     "SEARCH": "Menüde ara...",
     "NO_RESULTS": "Sonuç bulunamadı",
     "UNAUTHORIZED": "Bu işlemi yapmak için yetkiniz yok",
-    "MESSAGES": "Mesajlar"
+    "MESSAGES": "Mesajlar",
+    "AI_CHAT": "AI Asistan"
   },
   "LOGIN_PAGE": {
     "WELCOME": "Tekrar Hoşgeldiniz",
@@ -238,5 +239,19 @@
     "SEARCH": "Mesajlarda ara...",
     "INPUT_PLACEHOLDER": "Mesajınızı yazın...",
     "EMPTY_STATE": "Lütfen mesajlaşmak için bir kullanıcı seçin."
+  },
+  "AI_CHAT": {
+    "TITLE": "AI Banka Asistanı",
+    "STATUS_ONLINE": "Çevrimiçi",
+    "PLACEHOLDER": "Bankacılık hakkında bana her şeyi sorabilirsiniz...",
+    "CLEAR": "Sohbeti Temizle",
+    "THINKING": "Düşünüyor...",
+    "WELCOME_TITLE": "AI Banka Asistanına Hoşgeldiniz",
+    "WELCOME_DESC": "Bankacılık soruları, finansal tavsiyeler ve işlemlerinizi anlamanızda size yardımcı olabilirim.",
+    "SUGGESTION_1": "BankApp hangi hizmetleri sunuyor?",
+    "SUGGESTION_2": "Kredi faiz oranları nedir?",
+    "SUGGESTION_3": "Finanslarımı nasıl daha iyi yönetebilirim?",
+    "DISCLAIMER": "AI yanıtları yalnızca bilgilendirme amaçlıdır. Finansal tavsiye değildir.",
+    "ERROR_RESPONSE": "Üzgünüm, yanıt üretemiyorum. Lütfen daha sonra tekrar deneyin."
   }
 }

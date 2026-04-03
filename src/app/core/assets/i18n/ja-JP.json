@@ -10,7 +10,8 @@
     "SEARCH": "メニューを検索...",
     "NO_RESULTS": "結果がありません",
     "UNAUTHORIZED": "このアクションの権限がありません",
-    "MESSAGES": "メッセージ"
+    "MESSAGES": "メッセージ",
+    "AI_CHAT": "AIアシスタント"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "顧客管理",
@@ -238,5 +239,19 @@
     "SEARCH": "メッセージを検索...",
     "INPUT_PLACEHOLDER": "メッセージを入力...",
     "EMPTY_STATE": "ユーザーを選択してください。"
+  },
+  "AI_CHAT": {
+    "TITLE": "AI銀行アシスタント",
+    "STATUS_ONLINE": "オンライン",
+    "PLACEHOLDER": "銀行に関する質問を入力...",
+    "CLEAR": "チャットをクリア",
+    "THINKING": "考え中...",
+    "WELCOME_TITLE": "AI銀行アシスタントへようこそ",
+    "WELCOME_DESC": "銀行に関する質問、財務アドバイス、取引の理解をお手伝いします。",
+    "SUGGESTION_1": "BankAppはどんなサービスを提供していますか？",
+    "SUGGESTION_2": "金利はいくらですか？",
+    "SUGGESTION_3": "財務をより良く管理するには？",
+    "DISCLAIMER": "AI回答は情報提供のみを目的としています。財務アドバイスではありません。",
+    "ERROR_RESPONSE": "申し訳ございません。応答を生成できませんでした。後でもう一度お試しください。"
   }
 }

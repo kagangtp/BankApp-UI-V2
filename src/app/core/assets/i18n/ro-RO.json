@@ -10,7 +10,8 @@
     "SEARCH": "Căutare meniu...",
     "NO_RESULTS": "Niciun rezultat găsit",
     "UNAUTHORIZED": "Nu aveți permisiunea pentru această acțiune",
-    "MESSAGES": "Mesaje"
+    "MESSAGES": "Mesaje",
+    "AI_CHAT": "Asistent AI"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "Gestionare clienți",
@@ -238,5 +239,19 @@
     "SEARCH": "Căutare mesaje...",
     "INPUT_PLACEHOLDER": "Scrieți mesajul dvs...",
     "EMPTY_STATE": "Selectați un utilizator."
+  },
+  "AI_CHAT": {
+    "TITLE": "Asistent Bancar AI",
+    "STATUS_ONLINE": "Online",
+    "PLACEHOLDER": "Întrebați-mă orice despre banking...",
+    "CLEAR": "Șterge conversația",
+    "THINKING": "Se gândește...",
+    "WELCOME_TITLE": "Bun venit la Asistentul Bancar AI",
+    "WELCOME_DESC": "Vă pot ajuta cu întrebări bancare, sfaturi financiare și înțelegerea operațiunilor.",
+    "SUGGESTION_1": "Ce servicii oferă BankApp?",
+    "SUGGESTION_2": "Care sunt ratele dobânzii?",
+    "SUGGESTION_3": "Cum să-mi gestionez mai bine finanțele?",
+    "DISCLAIMER": "Răspunsurile AI sunt doar în scop informativ. Nu constituie sfaturi financiare.",
+    "ERROR_RESPONSE": "Îmi pare rău, nu am putut genera un răspuns. Vă rugăm să încercați mai târziu."
   }
 }

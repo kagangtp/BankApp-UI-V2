@@ -10,7 +10,8 @@
     "SEARCH": "Menü durchsuchen...",
     "NO_RESULTS": "Keine Ergebnisse gefunden",
     "UNAUTHORIZED": "Sie haben keine Berechtigung für diese Aktion",
-    "MESSAGES": "Nachrichten"
+    "MESSAGES": "Nachrichten",
+    "AI_CHAT": "KI-Assistent"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "Kundenverwaltung",
@@ -238,5 +239,19 @@
     "SEARCH": "Nachrichten suchen...",
     "INPUT_PLACEHOLDER": "Schreiben Sie Ihre Nachricht...",
     "EMPTY_STATE": "Bitte wählen Sie einen Benutzer aus, um mit dem Senden von Nachrichten zu beginnen."
+  },
+  "AI_CHAT": {
+    "TITLE": "KI-Bank-Assistent",
+    "STATUS_ONLINE": "Online",
+    "PLACEHOLDER": "Fragen Sie mich alles über Banking...",
+    "CLEAR": "Chat löschen",
+    "THINKING": "Denkt nach...",
+    "WELCOME_TITLE": "Willkommen beim KI-Bank-Assistenten",
+    "WELCOME_DESC": "Ich kann Ihnen bei Bankfragen, Finanzberatung und dem Verständnis Ihrer Transaktionen helfen.",
+    "SUGGESTION_1": "Welche Dienste bietet BankApp an?",
+    "SUGGESTION_2": "Wie hoch sind die Zinssätze?",
+    "SUGGESTION_3": "Wie kann ich meine Finanzen besser verwalten?",
+    "DISCLAIMER": "KI-Antworten dienen nur zu Informationszwecken. Keine Finanzberatung.",
+    "ERROR_RESPONSE": "Entschuldigung, ich konnte keine Antwort generieren. Bitte versuchen Sie es später erneut."
   }
 }

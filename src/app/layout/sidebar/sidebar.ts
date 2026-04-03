@@ -40,6 +40,7 @@ export class Sidebar implements OnInit {
     { path: '/mainpage/accounts', icon: '💳', labelKey: 'SIDEBAR.ACCOUNTS', roles: ['Admin'] },
     { path: '/mainpage/transactions', icon: '💰', labelKey: 'SIDEBAR.TRANSACTIONS' },
     { path: '/mainpage/messages', icon: '💬', labelKey: 'SIDEBAR.MESSAGES' },
+    { path: '/mainpage/ai-chat', icon: '🤖', labelKey: 'SIDEBAR.AI_CHAT' },
     { path: '/mainpage/send-email', icon: '✉️', labelKey: 'SIDEBAR.EMAIL', roles: ['Admin'] }, // Mail de admin olsun madem UserController öyleydi
   ];
 

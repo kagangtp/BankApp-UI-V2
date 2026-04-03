@@ -10,7 +10,8 @@
     "SEARCH": "搜索菜单...",
     "NO_RESULTS": "未找到结果",
     "UNAUTHORIZED": "您无权执行此操作",
-    "MESSAGES": "消息"
+    "MESSAGES": "消息",
+    "AI_CHAT": "AI 助手"
   },
   "CUSTOMERS_DISPLAY_PAGE": {
     "TITLE": "客户管理",
@@ -238,5 +239,19 @@
     "SEARCH": "搜索消息...",
     "INPUT_PLACEHOLDER": "输入您的消息...",
     "EMPTY_STATE": "请选择一个用户。"
+  },
+  "AI_CHAT": {
+    "TITLE": "AI 银行助手",
+    "STATUS_ONLINE": "在线",
+    "PLACEHOLDER": "向我询问有关银行的任何问题...",
+    "CLEAR": "清除聊天",
+    "THINKING": "思考中...",
+    "WELCOME_TITLE": "欢迎使用 AI 银行助手",
+    "WELCOME_DESC": "我可以帮助您解答银行问题、提供财务建议并帮助您了解操作。",
+    "SUGGESTION_1": "BankApp 提供哪些服务？",
+    "SUGGESTION_2": "利率是多少？",
+    "SUGGESTION_3": "如何更好地管理财务？",
+    "DISCLAIMER": "AI 回复仅供参考，不构成财务建议。",
+    "ERROR_RESPONSE": "抱歉，无法生成回复。请稍后重试。"
   }
 }

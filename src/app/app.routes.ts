@@ -19,6 +19,7 @@ import { UsersDisplay } from './features/users-display/users-display';
 import { CustomerDisplay } from './features/customer-display/customer-display';
 import { Transactions } from './features/transactions/transactions';
 import { Messages } from './features/messages/messages';
+import { AiChat } from './features/ai-chat/ai-chat';
 import { roleGuard } from './core/guards/role-guard';
 
 export const routes: Routes = [
@@ -46,6 +47,7 @@ export const routes: Routes = [
       { path: 'customers', component: CustomerDisplay },
       { path: 'transactions', component: Transactions },
       { path: 'messages', component: Messages },
+      { path: 'ai-chat', component: AiChat },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
