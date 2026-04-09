@@ -7,4 +7,5 @@ export interface Customer {
   createdAt: string; // .NET DateTime -> TS string (ISO Format)
   profileImageId?: string | null; // .NET Guid? -> TS string | null
   profileImagePath?: string | null; // Static file relative path
+  birthDate?: string | null; // .NET DateTime? -> TS string (ISO Format)
 }

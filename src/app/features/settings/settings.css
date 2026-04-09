@@ -199,3 +199,69 @@ input:checked+.slider:before {
     font-weight: 500;
     color: var(--text-secondary);
 }
+
+/* ── Mobile Responsive ── */
+@media (max-width: 768px) {
+    .settings-wrapper {
+        padding: 20px 16px;
+    }
+
+    .title-area h1 {
+        font-size: 1.75rem;
+    }
+
+    .title-area p {
+        font-size: 0.9rem;
+    }
+
+    .settings-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .card-left {
+        padding: 20px 20px 0 24px;
+        gap: 16px;
+    }
+
+    .card-right {
+        padding: 0 20px 20px 24px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+
+    .card-info h3 {
+        font-size: 1.05rem;
+    }
+
+    .color-grid {
+        grid-template-columns: repeat(4, 1fr); /* 2 satıra bölünsün mobilde */
+        width: 100%;
+    }
+
+    .color-dot {
+        width: 28px; /* Mobilde dokunması kolay olsun */
+        height: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-area h1 {
+        font-size: 1.5rem;
+    }
+
+    .card-left {
+        padding: 16px 16px 0 20px;
+    }
+
+    .card-right {
+        padding: 0 16px 16px 20px;
+    }
+}

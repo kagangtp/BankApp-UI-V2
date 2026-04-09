@@ -212,3 +212,31 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  .sidebar-container {
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Mobilde her zaman genişlemiş sidebar göster (collapsed mantığı deaktif) */
+  :host-context(.sidebar-collapsed) .logo-text,
+  :host-context(.sidebar-collapsed) .nav-text,
+  :host-context(.sidebar-collapsed) .logout-text {
+    opacity: 1;
+    display: inline;
+  }
+
+  .toggle-btn {
+    display: none;
+  }
+
+  .nav-link {
+    padding: 14px 16px;
+    font-size: 0.95rem;
+  }
+
+  .sidebar-header {
+    padding: 12px 16px;
+  }
+}

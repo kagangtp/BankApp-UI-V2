@@ -151,3 +151,69 @@
 .lang-dropdown:hover .dropdown-content {
   display: block;
 }
+
+/* ── HAMBURGER BUTTON (Mobile only, shown via .desktop-hidden) ── */
+.hamburger-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary, #1e293b);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.hamburger-btn:hover {
+  background: var(--bg-tertiary, #f1f5f9);
+}
+
+.hamburger-btn:active {
+  transform: scale(0.95);
+}
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  .navbar {
+    height: 56px;
+    padding: 0 12px;
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-box {
+    gap: 8px;
+  }
+
+  .logo-icon {
+    font-size: 1.2rem;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+  }
+
+  .nav-right {
+    gap: 10px;
+  }
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Çok küçük ekranlar (375px ve altı) */
+@media (max-width: 400px) {
+  .logo-text {
+    display: none;
+  }
+}

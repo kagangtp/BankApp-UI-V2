@@ -357,19 +357,105 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+    .assets-wrapper {
+        padding: 16px;
+        min-height: auto;
+    }
+
     .cards-grid {
         grid-template-columns: 1fr;
     }
 
     .assets-header {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
+        align-items: stretch;
+        gap: 12px;
+        margin-bottom: 24px;
+        padding-bottom: 16px;
     }
 
+    .profile-header-flex {
+        gap: 12px;
+    }
+
+    .profile-avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .profile-details h1 {
+        font-size: 1.3rem;
+    }
+
+    .profile-details p {
+        font-size: 0.85rem;
+    }
+
+    .btn-back {
+        width: 100%;
+        text-align: center;
+    }
+
+    .btn-add,
     .btn-add-profile-photo {
         width: 100%;
         justify-content: center;
+    }
+
+    .section {
+        margin-bottom: 28px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .section-header h2 {
+        font-size: 1.15rem;
+    }
+
+    .asset-card {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .asset-card-header {
+        flex-wrap: wrap;
+    }
+
+    .asset-card-actions {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 8px;
+    }
+
+    .image-thumb {
+        width: 72px;
+        height: 72px;
+        border-radius: 8px;
+    }
+
+    .empty-section {
+        padding: 24px 16px;
+    }
+
+    /* Modal */
+    .delete-modal {
+        width: 95%;
+        padding: 24px;
+        border-radius: 16px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .btn-secondary,
+    .btn-danger {
+        width: 100%;
     }
 }
 

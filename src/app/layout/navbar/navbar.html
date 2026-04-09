@@ -1,5 +1,14 @@
 <nav class="navbar">
   <div class="nav-left">
+    <!-- Hamburger: Sadece mobilde görünür -->
+    <button class="hamburger-btn desktop-hidden" (click)="onHamburgerClick()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
     <div class="logo-box">
       <span class="logo-icon">🏦</span>
       <span class="logo-text">BankApp</span>
@@ -10,7 +19,7 @@
     <app-language-changer />
 
     <div class="user-info">
-      <span class="user-name">{{ userName }}</span>
+      <span class="user-name mobile-hidden">{{ userName }}</span>
       <div class="user-avatar">
         <img *ngIf="profilePhotoUrl; else initialBlock" [src]="profilePhotoUrl" alt="{{ userName }}" class="profile-img">
         <ng-template #initialBlock>{{ userInitial }}</ng-template>

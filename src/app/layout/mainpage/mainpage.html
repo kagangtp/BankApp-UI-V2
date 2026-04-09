@@ -1,6 +1,10 @@
-<div class="main-layout" [class.sidebar-collapsed]="side.isCollapsed()">
+<div class="main-layout" 
+     [class.sidebar-collapsed]="side.isCollapsed()" 
+     [class.mobile-sidebar-open]="isMobileSidebarOpen">
 
-  <app-navbar></app-navbar>
+  <app-navbar (hamburgerClick)="toggleMobileSidebar()"></app-navbar>
+
+  <div class="mobile-backdrop" (click)="closeMobileSidebar()"></div>
 
   <app-sidebar #side></app-sidebar>
 

@@ -1,6 +1,5 @@
 .main-layout {
   display: grid;
-  /* Sidebar genişliğini bir değişken yapıyoruz, varsayılan 260px */
   --side-width: 260px;
 
   grid-template-columns: var(--side-width) 1fr;
@@ -14,7 +13,6 @@
   transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Sidebar kapandığında değişkeni değiştiriyoruz */
 .main-layout.sidebar-collapsed {
   --side-width: 80px;
 }
@@ -26,7 +24,6 @@ app-navbar {
 
 app-sidebar {
   grid-area: sidebar;
-  /* ÖNEMLİ: Kendi içinde sabit genişlik olmamalı, grid ne verirse o */
   width: 100%;
   height: 100%;
 }
@@ -37,4 +34,62 @@ app-sidebar {
   background-color: var(--bg-primary, #f8fafc);
   padding: 24px;
   min-width: 0;
+}
+
+/* ── MOBILE OVERLAY BACKDROP ── */
+.mobile-backdrop {
+  display: none;
+}
+
+/* ── MOBILE RESPONSIVE (768px altı) ── */
+@media (max-width: 768px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 56px 1fr;
+    grid-template-areas:
+      "navbar"
+      "content";
+  }
+
+  /* Sidebar'ı grid'den çıkar — artık overlay olarak sidebar.css yönetecek */
+  app-sidebar {
+    grid-area: unset;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Sidebar açıkken görünür yap */
+  .main-layout.mobile-sidebar-open app-sidebar {
+    transform: translateX(0);
+  }
+
+  /* Karanlık backdrop */
+  .mobile-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 998;
+  }
+
+  .main-layout.mobile-sidebar-open .mobile-backdrop {
+    display: block;
+  }
+
+  .content-area {
+    padding: 16px;
+  }
+
+  /* Collapsed kavramı mobilde gereksiz */
+  .main-layout.sidebar-collapsed {
+    --side-width: 1fr;
+    grid-template-columns: 1fr;
+  }
 }

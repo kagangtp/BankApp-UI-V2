@@ -127,3 +127,16 @@ h6 {
 .divine-card:hover {
   border-color: var(--accent-primary);
 }
+
+/* ── Mobile Responsive Utilities ── */
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .desktop-hidden {
+    display: none !important;
+  }
+}

@@ -189,6 +189,54 @@
     background: #f1f5f9;
 }
 
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .form-wrapper {
+        padding: 16px;
+    }
+
+    .form-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+    }
+
+    .form-header h1 {
+        font-size: 1.25rem;
+    }
+
+    .btn-back {
+        width: 100%;
+        text-align: center;
+    }
+
+    .form-card {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .file-upload-area {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .file-upload-btn {
+        text-align: center;
+    }
+
+    .form-footer {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 /* Image Gallery */
 .images-row {
     display: flex;

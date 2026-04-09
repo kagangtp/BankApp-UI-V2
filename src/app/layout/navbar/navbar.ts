@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, Output, EventEmitter } from '@angular/core';
 import { LanguageChanger } from '../../shared/components/language-changer/language-changer';
 import { environment } from '../../../environments/environment';
 import { UserService } from '../../core/services/userService';
@@ -14,12 +14,18 @@ import { UserService } from '../../core/services/userService';
 export class Navbar {
   private userService = inject(UserService);
 
+  @Output() hamburgerClick = new EventEmitter<void>();
+
   userName: string = 'yükleniyor...';
   userInitial: string = '?';
   profilePhotoUrl: string | null = null;
 
   ngOnInit() {
     this.loadUserData();
+  }
+
+  onHamburgerClick() {
+    this.hamburgerClick.emit();
   }
 
   loadUserData() {
@@ -36,7 +42,6 @@ export class Navbar {
       },
       error: (err) => {
         console.warn('Kullanıcı bilgileri API\'dan alınamadı', err);
-        // Fallback or handle logged out state
         this.userName = 'Misafir';
         this.userInitial = '?';
         this.profilePhotoUrl = null;

@@ -137,6 +137,11 @@
                     <small class="error-msg">{{ 'MODALS.TC_KIMLIK_ERROR' | translate }}</small>
                     }
                 </div>
+
+                <div class="form-group">
+                    <label for="birthDateEdit">{{ 'MODALS.BIRTHDATE_LABEL' | translate }}</label>
+                    <input id="birthDateEdit" type="date" formControlName="birthDate">
+                </div>
             </div>
 
             <div class="modal-footer">
@@ -168,6 +173,10 @@
                 <div class="form-group">
                     <label>{{ 'MODALS.EMAIL_LABEL' | translate }}</label>
                     <input type="email" formControlName="email">
+                </div>
+                <div class="form-group">
+                    <label>{{ 'MODALS.BIRTHDATE_LABEL' | translate }}</label>
+                    <input type="date" formControlName="birthDate">
                 </div>
             </div>
             <div class="modal-footer">

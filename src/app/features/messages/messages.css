@@ -315,3 +315,103 @@
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+    .chat-page-container {
+        padding: 0;
+        height: calc(100vh - 56px);
+    }
+
+    .chat-card {
+        border-radius: 0;
+        border: none;
+        flex-direction: column;
+    }
+
+    /* Conversation sidebar: mobilde üstte yatay liste veya gizle */
+    .conversation-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        max-height: 180px;
+        min-height: 0;
+    }
+
+    .sidebar-search {
+        padding: 10px;
+    }
+
+    .sidebar-search input {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .user-item {
+        padding: 10px 12px;
+    }
+
+    .user-avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
+
+    .user-name {
+        font-size: 0.9rem;
+    }
+
+    .last-msg {
+        font-size: 0.8rem;
+        max-width: 140px;
+    }
+
+    /* Chat area: tam genişlik */
+    .chat-main {
+        flex: 1;
+        min-height: 0;
+    }
+
+    .chat-header {
+        padding: 10px 12px;
+    }
+
+    .header-info strong {
+        font-size: 0.95rem;
+        margin-left: 4px;
+    }
+
+    .messages-area {
+        padding: 10px;
+    }
+
+    .msg-bubble {
+        max-width: 85%;
+        padding: 8px 12px;
+        border-radius: 14px;
+        font-size: 0.9rem;
+    }
+
+    /* Input area */
+    .chat-footer {
+        padding: 10px;
+    }
+
+    .input-group {
+        gap: 8px;
+    }
+
+    .input-group input {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .btn-send {
+        padding: 10px 14px;
+    }
+
+    .empty-state {
+        font-size: 0.95rem;
+        padding: 20px;
+    }
+}

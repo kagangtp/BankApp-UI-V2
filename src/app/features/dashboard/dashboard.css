@@ -216,7 +216,43 @@
         padding: 16px;
     }
 
+    .dashboard-header {
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+        text-align: center;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .dashboard-header p {
+        font-size: 0.875rem;
+    }
+
+    .chart-card {
+        padding: 20px;
+    }
+
     .chart-container {
         height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        gap: 8px;
+    }
+
+    .stat-date {
+        align-self: center;
+        margin-top: 8px;
+    }
+
+    .stat-value {
+        font-size: 1.2rem;
     }
 }

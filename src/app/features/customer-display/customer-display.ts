@@ -85,7 +85,8 @@ export class CustomerDisplay implements OnInit, OnDestroy {
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       balance: [0, [Validators.required]],
-      tcKimlikNo: ['', [Validators.pattern('^$|^[1-9]{1}[0-9]{10}$')]]
+      tcKimlikNo: ['', [Validators.pattern('^$|^[1-9]{1}[0-9]{10}$')]],
+      birthDate: [null]
     });
   }
 
@@ -113,7 +114,8 @@ export class CustomerDisplay implements OnInit, OnDestroy {
       name: customer.name,
       email: customer.email,
       balance: customer.balance,
-      tcKimlikNo: customer.tcKimlikNo
+      tcKimlikNo: customer.tcKimlikNo,
+      birthDate: customer.birthDate ? customer.birthDate.substring(0, 10) : null
     });
   }
 
@@ -167,8 +169,9 @@ export class CustomerDisplay implements OnInit, OnDestroy {
     this.updateForm.reset({
       name: '',
       email: '',
-      balance: 0, // <--- Bunu eklemezsen form 'invalid' kalır!
-      tcKimlikNo: ''
+      balance: 0, 
+      tcKimlikNo: '',
+      birthDate: null
     });
   }
 
@@ -176,8 +179,8 @@ export class CustomerDisplay implements OnInit, OnDestroy {
 
   onCreate() {
     if (this.updateForm.valid) {
-      const { name, email } = this.updateForm.value;
-      const newCustomer = { name, email };
+      const { name, email, birthDate } = this.updateForm.value;
+      const newCustomer = { name, email, birthDate };
 
       this.customerService.createCustomer(newCustomer).subscribe({
         next: (response) => {

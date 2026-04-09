@@ -25,6 +25,7 @@
     "EMAIL_LABEL": "E-posta Adresi",
     "BALANCE_LABEL": "Bakiye (TRY)",
     "TC_KIMLIK_LABEL": "T.C. Kimlik No",
+    "BIRTHDATE_LABEL": "Doğum Tarihi",
     "TC_KIMLIK_ERROR": "Geçerli bir T.C. Kimlik No girmelisiniz.",
     "SAVE_CHANGES": "Değişiklikleri Kaydet",
     "SAVE_CUSTOMER": "Müşteriyi Kaydet",
