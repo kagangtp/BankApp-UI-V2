@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  rootUrl: 'https://bankapp-app-v2-production.up.railway.app',      // Dosya yolları için (uploads vb.)
-  apiUrl: 'https://bankapp-app-v2-production.up.railway.app/api'   // API istekleri için
+  rootUrl: 'https://bankapp-app-v2.onrender.com',      // Dosya yolları ve SignalR vb. base URL
+  apiUrl: 'https://bankapp-app-v2.onrender.com/api'    // API istekleri için tam URL
 };

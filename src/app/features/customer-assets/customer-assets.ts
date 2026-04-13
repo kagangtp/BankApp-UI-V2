@@ -109,7 +109,7 @@ export class CustomerAssets implements OnInit {
         this.customerService.getCustomerById(this.customerId).subscribe(res => {
             if (res.success) {
                 this.customer = res.data;
-                // .NET artık tam Supabase URL'i döndüğü için direkt atama yapıyoruz
+                // .NET artık tam GCP URL'i döndüğü için direkt atama yapıyoruz
                 this.profileImageUrl = this.customer?.profileImagePath
                     ? this.customer.profileImagePath
                     : this.defaultAvatar;
