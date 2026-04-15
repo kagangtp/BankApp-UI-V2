@@ -1,6 +1,6 @@
 .form-wrapper {
     padding: 32px;
-    background-color: #f8fafc;
+    background-color: var(--bg-primary);
     min-height: calc(100vh - 64px);
     display: flex;
     flex-direction: column;
@@ -15,36 +15,36 @@
     max-width: 600px;
     margin-bottom: 32px;
     padding-bottom: 24px;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .form-header h1 {
-    color: #0f172a;
+    color: var(--text-primary);
     font-size: 1.5rem;
     font-weight: 800;
 }
 
 .btn-back {
-    background: white;
-    border: 1px solid #e2e8f0;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
     padding: 10px 20px;
     border-radius: 12px;
     font-weight: 700;
     font-size: 0.875rem;
-    color: #475569;
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .btn-back:hover {
-    background: #f1f5f9;
+    background: var(--bg-tertiary);
     transform: translateX(-2px);
 }
 
 .form-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 24px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-color);
     padding: 32px;
     width: 100%;
     max-width: 600px;
@@ -59,7 +59,7 @@
     display: block;
     font-size: 0.875rem;
     font-weight: 700;
-    color: #475569;
+    color: var(--text-secondary);
     margin-bottom: 8px;
 }
 
@@ -68,7 +68,9 @@
     width: 100%;
     padding: 14px 16px;
     border-radius: 12px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--border-color);
+    background: var(--input-bg);
+    color: var(--text-primary);
     transition: all 0.2s;
     font-size: 1rem;
     font-family: inherit;
@@ -79,7 +81,7 @@
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #6366f1;
+    border-color: var(--accent-primary);
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
@@ -91,23 +93,23 @@
 }
 
 .file-upload-btn {
-    background: #eef2ff;
-    color: #4338ca;
+    background: var(--bg-tertiary);
+    color: var(--accent-primary);
     padding: 12px 20px;
     border-radius: 12px;
     font-weight: 700;
     cursor: pointer;
-    border: 1px dashed #a5b4fc;
+    border: 1px dashed var(--accent-primary);
     transition: all 0.2s;
 }
 
 .file-upload-btn:hover {
-    background: #e0e7ff;
-    border-color: #6366f1;
+    background: var(--bg-secondary);
+    border-color: var(--accent-hover);
 }
 
 .file-count {
-    color: #64748b;
+    color: var(--text-muted);
     font-size: 0.9rem;
 }
 
@@ -122,17 +124,17 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #f1f5f9;
+    background: var(--bg-tertiary);
     padding: 6px 12px;
     border-radius: 8px;
     font-size: 0.85rem;
-    color: #334155;
+    color: var(--text-primary);
 }
 
 .chip-remove {
     background: none;
     border: none;
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 1.2rem;
     cursor: pointer;
     padding: 0 2px;
@@ -149,11 +151,11 @@
     gap: 12px;
     justify-content: flex-end;
     padding-top: 24px;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--border-color);
 }
 
 .btn-primary {
-    background: #6366f1;
+    background: var(--accent-primary);
     color: white;
     padding: 12px 24px;
     border-radius: 12px;
@@ -164,29 +166,29 @@
 }
 
 .btn-primary:hover:not(:disabled) {
-    background: #4f46e5;
+    background: var(--accent-hover);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
 .btn-primary:disabled {
-    background: #cbd5e1;
+    background: var(--border-color);
     cursor: not-allowed;
 }
 
 .btn-secondary {
-    background: white;
-    color: #475569;
+    background: var(--card-bg);
+    color: var(--text-secondary);
     padding: 12px 24px;
     border-radius: 12px;
     font-weight: 700;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-color);
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .btn-secondary:hover {
-    background: #f1f5f9;
+    background: var(--bg-tertiary);
 }
 
 /* --- RESPONSIVE --- */
